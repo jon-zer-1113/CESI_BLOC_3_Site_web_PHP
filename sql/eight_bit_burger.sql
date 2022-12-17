@@ -16,10 +16,12 @@ CREATE TABLE IF NOT EXISTS `admin` (
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `commentId` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commentTitle` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rating` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `creationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rating` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `creationDate` date NOT NULL,
   `userId` int NOT NULL,
   `recipeId` int NOT NULL,
   PRIMARY KEY (`commentId`),
@@ -47,7 +49,8 @@ CREATE TABLE IF NOT EXISTS `recipe` (
   `cost` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ingredients` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `steps` varchar(700) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `creationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `adminUsername` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `creationDate` date NOT NULL,
   PRIMARY KEY (`recipeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

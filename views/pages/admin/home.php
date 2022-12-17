@@ -26,14 +26,14 @@
 						<label for="admin-email-login" class="form-label">Email:</label>
 						<input type="email" class="form-control" name="adminEmail" id="admin-email-login" placeholder="Email" required>
 						<div class="invalid-feedback">
-							Merci d'indiquer un email valide.
+							Email invalide.
 						</div>
 					</div>
 					<div class="mb-5">
 						<label for="admin-password-login" class="form-label">Mot de passe:</label>
 						<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="adminPassword" id="admin-password-login" placeholder="Mot de passe" required>
 						<div class="invalid-feedback">
-							Merci d'indiquer un mot de passe valide.
+							Mot de passe invalide.
 						</div>
 					</div>
 					<button class="btn btn-primary text-uppercase mx-auto d-block" type="submit">Connexion</button>

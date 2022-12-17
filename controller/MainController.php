@@ -12,6 +12,7 @@ class MainController
 	private $userLayout = 'views/layouts/user/layout.php';
 	private $adminLayout = 'views/layouts/admin/layout.php';
 	private $adminMainLayout = 'views/layouts/admin/main_layout.php';
+	private $superAdminMainLayout = 'views/layouts/admin/super_admin_layout.php';
 	private $model;
 	private $recipeModel;
 	private $recipes;
@@ -22,13 +23,17 @@ class MainController
 	private $userModel;
 	private $validation;
 	private $newValidation;
+	private $superAdminView;
+	private $comment;
+	private $commentModel;
+	private $comments;
 
 	// VISITOR CONTENT
 	// HOME PAGE
 	private function displayCurrentVisitorHome()
 	{
 		$this->visitorView = 'views/pages/visitor/home.php';
-		$this->titleLayout = 'Accueil 🏠';
+		$this->titleLayout = '8-Bit Burger | Accueil 🏠';
 		require_once $this->visitorLayout;
 	}
 
@@ -41,7 +46,7 @@ class MainController
 	private function displayCurrentTeam()
 	{
 		$this->visitorView = 'views/pages/visitor/team.php';
-		$this->titleLayout = 'Equipe 💪';
+		$this->titleLayout = '8-Bit Burger | Equipe 💪';
 		require_once $this->visitorLayout;
 	}
 
@@ -54,7 +59,7 @@ class MainController
 	private function displayCurrentContact()
 	{
 		$this->visitorView = 'views/pages/visitor/contact.php';
-		$this->titleLayout = 'Contact 📧';
+		$this->titleLayout = '8-Bit Burger | Contact 📧';
 		require_once $this->visitorLayout;
 	}
 
@@ -112,7 +117,7 @@ class MainController
 	private function displayCurrentUserHome()
 	{
 		$this->userView = 'views/pages/user/home.php';
-		$this->titleLayout = 'Accueil 🏠';
+		$this->titleLayout = '8-Bit Burger | Accueil 🏠';
 		require_once $this->userLayout;
 	}
 
@@ -127,7 +132,7 @@ class MainController
 		$this->recipeModel = new \Models\Read();
 		$this->recipes = $this->recipeModel->getRecipes();
 		$this->userView = 'views/pages/user/all_recipes.php';
-		$this->titleLayout = 'Consultation des recettes 🍔';
+		$this->titleLayout = '8-Bit Burger | Recettes 👨‍🍳';
 		require_once $this->userLayout;
 	}
 
@@ -142,13 +147,42 @@ class MainController
 		$this->recipeModel = new \Models\Read();
 		$this->recipe = $this->recipeModel->getRecipe($_GET['recipeId']);
 		$this->userView = 'views/pages/user/recipe.php';
-		$this->titleLayout = 'Recette 🍔';
+		$this->titleLayout = '8-Bit Burger | Recette 👨‍🍳';
 		require_once $this->userLayout;
 	}
 
 	public function displayUserRecipe()
 	{
 		return $this->displayUserCurrentRecipe();
+	}
+
+	// CREATE A COMMENT
+	private function createCurrentComment()
+	{
+		$this->commentModel = new \Models\Create();
+		$this->validation  = new \Validation\Validate();
+		$this->newValidation = $this->validation->validationNewComment(htmlspecialchars($_POST['commentTitle']), htmlspecialchars($_POST['content']), htmlspecialchars($_POST['title']), htmlspecialchars($_POST['username']), htmlspecialchars($_POST['userId']), htmlspecialchars($_POST['recipeId']));
+		$this->comment = $this->commentModel->createComment(htmlspecialchars(ucfirst($_POST['commentTitle'])), htmlspecialchars(ucfirst($_POST['content'])), htmlspecialchars($_POST['rating']), htmlspecialchars($_POST['title']), htmlspecialchars($_POST['username']), htmlspecialchars($_POST['userId']), htmlspecialchars($_POST['recipeId']));
+		exit(header('Location: index.php?p=commentaires-utilisateurs'));
+	}
+
+	public function createNewComment()
+	{
+		return $this->createCurrentComment();
+	}
+
+	private function displayUserComments()
+	{
+		$this->commentModel = new \Models\Read();
+		$this->comments = $this->commentModel->getComments();
+		$this->userView = 'views/pages/user/all_comments.php';
+		$this->titleLayout = '8-Bit Burger | Commentaires 💬';
+		require_once $this->userLayout;
+	}
+
+	public function displayAllUserComments()
+	{
+		return $this->displayUserComments();
 	}
 
 	// ADMIN CONTENT (BACK-OFFICE)
@@ -163,6 +197,19 @@ class MainController
 	public function sessionOnlyAdmin()
 	{
 		return $this->sessionAdmin();
+	}
+
+	// BACK-OFFICE ACCESS ONLY FOR THE SUPER ADMIN ACCOUNT
+	private function sessionSuperAdmin()
+	{
+		if (($_SESSION['adminId'] !== 1)) {
+			exit(header('Location: index.php?p=comptes-utilisateurs'));
+		}
+	}
+
+	public function sessionOnlySuperAdmin()
+	{
+		return $this->sessionSuperAdmin();
 	}
 
 	// REGISTRATION
@@ -200,7 +247,7 @@ class MainController
 	private function displayCurrentAdminHome()
 	{
 		$this->adminView = 'views/pages/admin/home.php';
-		$this->titleLayout = 'Accueil 🏠';
+		$this->titleLayout = '8-Bit Burger | Accueil 🏠';
 		require_once $this->adminLayout;
 	}
 
@@ -213,7 +260,7 @@ class MainController
 	private function displayCurrentAdminMainHome()
 	{
 		$this->adminView = 'views/pages/admin/main_home.php';
-		$this->titleLayout = 'Accueil administrateur 🏠';
+		$this->titleLayout = '8-Bit Burger | Accueil admin 🏠';
 		require_once $this->adminMainLayout;
 	}
 
@@ -228,7 +275,7 @@ class MainController
 		$this->recipeModel = new \Models\Read();
 		$this->recipes = $this->recipeModel->getRecipes();
 		$this->adminView = 'views/pages/admin/all_recipes.php';
-		$this->titleLayout = 'Gestion des recettes 🍔';	
+		$this->titleLayout = '8-Bit Burger | Recettes 👨‍🍳';	
 		require_once $this->adminMainLayout;
 	}
 
@@ -243,7 +290,7 @@ class MainController
 		$this->recipeModel = new \Models\Read();
 		$this->recipe = $this->recipeModel->getRecipe($_GET['recipeId']);
 		$this->adminView = 'views/pages/admin/recipe.php';
-		$this->titleLayout = 'Recette 🍔';	
+		$this->titleLayout = '8-Bit Burger | Recette 👨‍🍳';	
 		require_once $this->adminMainLayout;
 	}
 
@@ -257,8 +304,8 @@ class MainController
 	{
 		$this->recipeModel = new \Models\Create();
 		$this->validation  = new \Validation\Validate();
-		$this->newValidation = $this->validation->validationNewRecipe(htmlspecialchars($_POST['title']), htmlspecialchars ($_POST['description']), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']),htmlspecialchars($_POST['difficulty']), htmlspecialchars($_POST['cost']), htmlspecialchars($_POST['ingredients']), htmlspecialchars($_POST['steps']));
-		$this->recipe = $this->recipeModel->addRecipe(htmlspecialchars(ucwords($_POST['title'])), htmlspecialchars(ucwords($_POST['description'])), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']),htmlspecialchars(ucwords($_POST['difficulty'])), htmlspecialchars(ucwords($_POST['cost'])), htmlspecialchars(ucwords($_POST['ingredients'])), htmlspecialchars(ucwords($_POST['steps'])));
+		$this->newValidation = $this->validation->validationNewRecipe(htmlspecialchars($_POST['title']), htmlspecialchars ($_POST['description']), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']),htmlspecialchars($_POST['difficulty']), htmlspecialchars($_POST['cost']), htmlspecialchars($_POST['ingredients']), htmlspecialchars($_POST['steps']), htmlspecialchars($_POST['adminUsername']));
+		$this->recipe = $this->recipeModel->addRecipe(htmlspecialchars(ucfirst($_POST['title'])), htmlspecialchars(ucfirst($_POST['description'])), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']),htmlspecialchars(ucfirst($_POST['difficulty'])), htmlspecialchars(ucfirst($_POST['cost'])), htmlspecialchars(ucfirst($_POST['ingredients'])), htmlspecialchars(ucfirst($_POST['steps'])), htmlspecialchars($_POST['adminUsername']));
 		exit(header('Location: index.php?p=gestion-recettes'));
 	}
 
@@ -273,7 +320,7 @@ class MainController
 		$this->recipeModel = new \Models\Read();
 		$this->recipe = $this->recipeModel->getRecipe($_GET['recipeId']);
 		$this->adminView = 'views/pages/admin/edit_recipe.php';
-		$this->titleLayout = 'Modifier la recette 🍔';
+		$this->titleLayout = '8-Bit Burger | Modification recette 👨‍🍳';
 		require_once $this->adminMainLayout;
 	}
 
@@ -288,7 +335,7 @@ class MainController
 		$this->recipeModel = new \Models\Update();
 		$this->validation  = new \Validation\Validate();
 		$this->newValidation = $this->validation->validationUpdateRecipe(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['prepTime']), htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']), htmlspecialchars($_POST['difficulty']), htmlspecialchars($_POST['cost']), htmlspecialchars($_POST['ingredients']), htmlspecialchars($_POST['steps']), htmlspecialchars($_POST['recipeId']));
-		$this->recipe = $this->recipeModel->updateRecipe(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['description']), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']), htmlspecialchars($_POST['difficulty']), htmlspecialchars($_POST['cost']),htmlspecialchars($_POST['ingredients']), htmlspecialchars($_POST['steps']), htmlspecialchars($_POST['recipeId']));
+		$this->recipe = $this->recipeModel->updateRecipe(htmlspecialchars(ucfirst($_POST['title'])), htmlspecialchars(ucfirst($_POST['description'])), htmlspecialchars($_POST['prepTime']),htmlspecialchars($_POST['bakeTime']), htmlspecialchars($_POST['totalTime']), htmlspecialchars(ucfirst($_POST['difficulty'])), htmlspecialchars(ucfirst($_POST['cost'])),htmlspecialchars(ucfirst($_POST['ingredients'])), htmlspecialchars(ucfirst($_POST['steps'])), htmlspecialchars($_POST['recipeId']));
 		exit(header('Location: index.php?p=gestion-recettes'));
 	}
 
@@ -310,18 +357,46 @@ class MainController
 		return $this->deleteCurrentRecipe();
 	}
 
-	// DISPLAY ALL THE RECIPES
+	// DISPLAY ALL THE USERS
 	private function displayAllCurrentUsers()
 	{
 		$this->userModel = new \Models\Read();
 		$this->users = $this->userModel->getUsers();
 		$this->adminView = 'views/pages/admin/all_users.php';
-		$this->titleLayout = 'Consultation des utilisateurs 🍔';
+		$this->titleLayout = '8-Bit Burger | Utilisateurs 👤';
 		require_once $this->adminMainLayout;
 	}
 
 	public function displayAllUsers()
 	{
 		return $this->displayAllCurrentUsers();
+	}
+
+	// DISPLAY ALL THE USERS (SUPER ADMIN ACCOUNT)
+	private function displayAllCurrentUsersSuperAdmin()
+	{
+		$this->userModel = new \Models\Read();
+		$this->users = $this->userModel->getUsers();
+		$this->superAdminView = 'views/pages/admin/all_users_superadmin.php';
+		$this->titleLayout = '8-Bit Burger | Utilisateurs 👤';
+		require_once $this->superAdminMainLayout;
+	}
+
+	public function displayAllUsersSuperAdmin()
+	{
+		return $this->displayAllCurrentUsersSuperAdmin();
+	}
+
+	// DELETE A SPECIFIC USER (ONLY SUPER ADMIN) 
+	private function deleteCurrentUser()
+	{
+		$this->userModel = new \Models\Delete();
+		$this->user = $this->userModel->deleteUser($_GET['userId']);
+		exit(header('Location: index.php?p=gestion-utilisateurs'));
+	}
+
+	public function deleteUser()
+	{
+		return $this->deleteCurrentUser();
 	}
 }

@@ -2,9 +2,7 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -14,6 +12,7 @@ session_destroy();
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css?v=<?= htmlspecialchars(time()); ?>">
+	<link rel="shortcut icon" type="image/x-icon" href="medias/icon/favicon.ico">
 	<title><?= htmlspecialchars($this->titleLayout) ?></title>
 </head>
 
@@ -50,14 +49,14 @@ session_destroy();
 						<form action="index.php?p=connexion-utilisateur" class="needs-validation" method="POST" novalidate>
 							<div class="mb-3">
 								<label for="user-email-login" class="form-label">Email:</label>
-								<input type="email" class="form-control" name="email" id="user-email-login" placeholder="Email">
+								<input type="email" class="form-control" name="email" id="user-email-login" placeholder="Email" required>
 								<div class="invalid-feedback">
 									Email invalide.
 								</div>
 							</div>
 							<div class="mb-5">
 								<label for="user-password-login" class="form-label">Mot de passe:</label>
-								<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="password" id="user-password-login" placeholder="Mot de passe">
+								<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="password" id="user-password-login" placeholder="Mot de passe" required>
 								<div class="invalid-feedback">
 									Mot de passe invalide.
 								</div>
@@ -82,10 +81,10 @@ session_destroy();
 						<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
 					</div>
 					<div class="modal-body">
-						<form action="index.php?p=nouvel-utilisateur" class="needs-validation" method="POST" novalidate>
+						<form action="index.php?p=nouvel-utilisateur" class="needs-validation" method="POST" novalidate id="test">
 							<div class="mb-3">
 								<label for="user-username-registration" class="form-label">Nom d'utilisateur:</label>
-								<input type="text" class="form-control" name="username" id="user-username-registration" placeholder="Nom d'utilisateur">
+								<input type="text" class="form-control" name="username" id="user-username-registration" placeholder="Nom d'utilisateur" required>
 								<small class="form-text text-muted">Lettres, nombres, hyphens et underscores autorisés</small>
 								<div class="invalid-feedback">
 									Nom d'utilisateur invalide.
@@ -93,34 +92,34 @@ session_destroy();
 							</div>
 							<div class="mb-3">
 								<label for="user-firstname-registration" class="form-label">Prénom:</label>
-								<input type="text" class="form-control" name="firstname" id="user-firstname-registration" placeholder="Prénom">
+								<input type="text" class="form-control" name="firstname" id="user-firstname-registration" placeholder="Prénom" required>
 								<div class="invalid-feedback">
 									Prénom manquant.
 								</div>
 							</div>
 							<div class="mb-3">
 								<label for="user-lastname-registration" class="form-label">Nom:</label>
-								<input type="text" class="form-control" name="lastname" id="user-lastname-registration" placeholder="Nom">
+								<input type="text" class="form-control" name="lastname" id="user-lastname-registration" placeholder="Nom" required>
 								<div class="invalid-feedback">
-									Prénom manquant.
+									Nom manquant.
 								</div>
 							</div>
 							<div class="mb-3">
 								<label for="user-email-registration" class="form-label">Email:</label>
-								<input type="email" class="form-control" name="email" id="user-email-registration" placeholder="Email">
+								<input type="email" class="form-control" name="email" id="user-email-registration" placeholder="Email" required>
 								<div class="invalid-feedback">
 									Email invalide.
 								</div>
 							</div>
 							<div class="mb-5">
 								<label for="user-password-registration" class="form-label">Mot de passe:</label>
-								<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="password" id="user-password-registration" placeholder="Mot de passe">
+								<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="password" id="user-password-registration" placeholder="Mot de passe" required>
 								<small class="form-text text-muted">Au moins 8 charactères, une lettre majuscule, minuscule, un chiffre et un charactère spécial</small>
 								<div class="invalid-feedback">
 									Mot de passe invalide.
 								</div>
 							</div>
-							<button class="btn btn-primary text-uppercase mx-auto d-block" type="submit">Inscription</button>
+							<button class="btn btn-primary text-uppercase mx-auto d-block" name="submit" type="submit">Inscription</button>
 						</form>
 					</div>
 				</div>

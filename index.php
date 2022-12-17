@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 // Include the autoloader
 require_once __DIR__ . '/vendor/autoloader.php';
 
-// URL parameters
+// URL 
 $page = $_GET['p'];
 if (isset($page)) {
 	switch ($page) {
@@ -42,6 +42,14 @@ if (isset($page)) {
 		case 'consulter-recette':
 			$controller = new Controller\MainController();
 			$controller->displayUserRecipe();
+			break;
+		case 'nouveau-commentaire':
+			$controller = new Controller\MainController();
+			$controller->createNewComment();
+			break;
+		case 'commentaires-utilisateurs':
+			$controller = new Controller\MainController();
+			$controller->displayAllUserComments();
 			break;
 		case 'accueil-admin':
 			$controller = new Controller\MainController();
@@ -86,6 +94,14 @@ if (isset($page)) {
 		case 'comptes-utilisateurs':
 			$controller = new Controller\MainController();
 			$controller->displayAllUsers();
+			break;
+		case 'gestion-utilisateurs':
+			$controller = new Controller\MainController();
+			$controller->displayAllUsersSuperAdmin();
+			break;
+		case 'supprimer-utilisateur':
+			$controller = new Controller\MainController();
+			$controller->deleteUser();
 			break;
 		default:
 			exit(header('Location: index.php?p=accueil'));

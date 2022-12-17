@@ -70,7 +70,7 @@ h3,
     box-shadow: 1.25rem 0.625rem #000000;
 }
 
-.user__recipe-page article div,
+.user__recipe-page .current-recipe div,
 .back-office__recipe-page article div,
 .recipe-ingredients p,
 .recipe-steps p {
@@ -212,6 +212,8 @@ footer p {
 .user__all-recipes-page span::before,
 .back-office__edit-recipe-page span::before,
 .back-office__all-recipes-page span::before,
+.back-office__all-users-page span::before,
+.back-office__all-users-superadmin-page span::before,
 .back-office__home-page span::before {
     content: "\a";
     white-space: pre;
@@ -243,6 +245,9 @@ footer p {
 .user__all-recipes-page,
 .user__recipe-page,
 .back-office__all-recipes-page,
+.back-office__all-users-superadmin-page,
+.back-office__all-users-page,
+.back-office__all-users-superadmin-page,
 .back-office__recipe-page,
 .back-office__edit-recipe-page {
     padding: 10rem 0;
@@ -318,25 +323,25 @@ tr, th, td, table {
     .back-office__home-page {
         padding: 10rem 0 23rem 0;
     }
+
+    .navbar img {
+        width: 15rem;
+    }
 }
 
 @media only screen and (max-width: 768px) {
     /* HEADER */
     html,
-        body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
     .first-link:first-child {
         margin-top: 1rem;
-    }
-
-    .navbar img {
-        width: 13rem;
     }
 
     .nav-item {
@@ -351,7 +356,7 @@ tr, th, td, table {
 
     /* BACK-OFFICE MAIN HOME PAGE */
     .back-office__main-home-page {
-        background-image: url("../medias/img/admin/forest_responsive.jpg");
+        background-image: url("../medias/img/common/forest_responsive.jpg");
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -383,13 +388,17 @@ tr, th, td, table {
     /* BACK-OFFICE ALL RECIPES PAGE*/
     .user__all-recipes-page span::before,
     .back-office__all-recipes-page span::before,
+    .back-office__all-users-page span::before,
+    .back-office__all-users-superadmin-page span::before,
     .back-office__home-page span::before {
         content: "\a";
         white-space: normal;
     }
 
     .user__all-recipes-page article p,
-    .back-office__all-recipes-page article p {
+    .back-office__all-recipes-page article p,
+    .back-office__all-superadmin-page article p,
+    .back-office__all-users-page article p {
         padding: 0 4rem;
     }
 

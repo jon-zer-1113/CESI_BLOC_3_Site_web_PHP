@@ -2,12 +2,13 @@
 <section class="user__recipe-page text-center">
     <h1 class="text-center">Recette</h1>
 
-    <article>
+    <article class="current-recipe">
         <h2 class="mt-3 mb-5">Recette ajoutée</h2>
         <h3><?= htmlspecialchars($this->recipe['title']) ?></h3>
         <p class="col-7 col-sm-6 col-md-7 col-lg-5 col-xl-4 mx-auto"><?= htmlspecialchars($this->recipe['description']) ?></p>
         <p><img src="medias/img/common/burger.png" class="my-5" alt="image de hamburger"></p>
-        <p>Publication: <?= htmlspecialchars($this->recipe['creationDate']) ?></p>
+        <p>Publié par <?= htmlspecialchars($this->recipe['adminUsername']) ?></p>
+        <p>Le <?= htmlspecialchars($this->recipe['creationDate']) ?></p>
 
         <article class="my-5">
             <h4 class="mb-3">Général</h4>
@@ -33,6 +34,43 @@
             <h4 class="mb-3">Etapes</h4>
             <p class="p-5"><?= htmlspecialchars($this->recipe['steps']) ?></p>
         </article>
+    </article>
+
+    <article>
+        <form action="index.php?p=nouveau-commentaire" class="needs-validation" method="POST" novalidate>
+            <div class="mb-3">
+                <label for="comment-title" class="form-label">Titre :</label>
+                <input type="text" class="form-control" name="commentTitle" id="comment-title" required>
+                <div class="invalid-feedback">
+                    Titre manquant.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="comment-rating" class="form-label">Note (1 à 5 cœurs):</label>
+                <select class="form-control" id="comment-rating" name="rating">
+                    <option value="❤️">❤️</option>
+                    <option value="❤️❤️">❤️❤️</option>
+                    <option value="❤️❤️❤️">❤️❤️❤️</option>
+                    <option value="❤️❤️❤️❤️">❤️❤️❤️❤️</option>
+                    <option value="❤️❤️❤️❤️❤️">❤️❤️❤️❤️❤️</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="comment-content" class="form-label">Commentaire :</label>
+                <textarea name="content" class="form-control" rows="10" id="comment-content" required></textarea>
+                <div class="invalid-feedback">
+                    Commentaire manquant.
+                </div>
+            </div>
+            <input type="hidden" class="form-control" name="title" id="title" value="<?= htmlspecialchars($this->recipe['title']) ?>" required>
+            <input type="hidden" class="form-control" name="username" id="username" value="<?= htmlspecialchars($_SESSION['username']); ?>" required>
+            <input type="hidden" class="form-control" name="userId" id="userId" value="<?= htmlspecialchars($_SESSION['userId']); ?>" required>
+            <input type="hidden" class="form-control" name="recipeId" id="recipeId" value="<?= htmlspecialchars($this->recipe['recipeId']) ?>" required>
+            <button class="btn btn-primary text-uppercase mx-auto d-block" type="submit">Ajouter</button>
+        </form>
+        <aside>
+            <a href="index.php?p=commentaires-utilisateurs">Commentaires</a>
+        </aside>
     </article>
 
     <!-- NAVIGATION TO THE PREVIOUS PAGE -->

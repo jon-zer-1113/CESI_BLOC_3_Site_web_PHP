@@ -10,7 +10,7 @@
 
     <article class="mt-5 text-center">
         <h2>Liste des burgers <i class="fa-solid fa-burger"></i></h2>
-        <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#add__modal">Ajouter une recette <i class="fa-solid fa-circle-plus"></i></button>
+        <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#add-recipe__modal">Ajouter une recette <i class="fa-solid fa-circle-plus"></i></button>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="table-responsive">
@@ -18,12 +18,14 @@
                         <tr>
                             <th>Titre</th>
                             <th>Date de création</th>
+                            <th>Créateur</th>
                             <th>Actions</th>
                         </tr>
                         <?php foreach ($this->recipes as $recipe) : ?>
                             <tr>
                                 <td><?= htmlspecialchars($recipe['title']) ?></td>
                                 <td><?= htmlspecialchars($recipe['creationDate']) ?></td>
+                                <td><?= htmlspecialchars($recipe['adminUsername']) ?></td>
                                 <td class="d-flex flex-column align-items-center">
                                     <a href="index.php?p=recette&recipeId=<?= htmlspecialchars($recipe['recipeId']) ?>" class="btn btn-primary my-3" title="Voir"><i class="fa-solid fa-circle-check"></i></a>
                                     <a href="index.php?p=editer-recette&recipeId=<?= htmlspecialchars($recipe['recipeId']) ?>" class="btn btn-warning mb-3" title="Editer"><i class="fa-sharp fa-solid fa-pen text-light"></i></a>
@@ -38,7 +40,7 @@
     </article>
 
     <!-- MODAL: CREATING A NEW RECIPE -->
-    <div id="add__modal" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="creating-recipe__modal" aria-hidden="true">
+    <div id="add-recipe__modal" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="creating-recipe__modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -48,6 +50,7 @@
                 <div class="modal-body">
                     <form action="index.php?p=nouvelle-recette" class="needs-validation" method="POST" novalidate>
                         <div class="mb-3">
+                            <input type="hidden" class="form-control" name="adminUsername" value="<?= htmlspecialchars($_SESSION['adminUsername']); ?>" required>
                             <label for="recipe-add-title" class="form-label">Titre :</label>
                             <input type="text" class="form-control" name="title" id="recipe-add-title" required>
                             <div class="invalid-feedback">

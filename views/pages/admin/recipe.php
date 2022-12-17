@@ -7,7 +7,8 @@
 		<h3><?= htmlspecialchars($this->recipe['title']) ?></h3>
 		<p class="col-7 col-sm-6 col-md-7 col-lg-5 col-xl-4 mx-auto"><?= htmlspecialchars($this->recipe['description']) ?></p>
 		<p><img src="medias/img/common/burger.png" class="my-5" alt="image de hamburger"></p>
-		<p>Publication: <?= htmlspecialchars($this->recipe['creationDate']) ?></p>
+		<p>Publié par <?= htmlspecialchars($this->recipe['adminUsername']) ?></p>
+		<p>Le <?= htmlspecialchars($this->recipe['creationDate']) ?></p>
 
 		<article class="my-5">
 			<h4 class="mb-3">Général</h4>
