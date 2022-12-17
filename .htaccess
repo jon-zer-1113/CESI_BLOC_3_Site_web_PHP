@@ -1,0 +1,17 @@
+RewriteEngine On
+
+Options -Indexes 
+
+#Redirection index.php ==> no index.php
+RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
+
+<ifModule mod_headers.c> 
+    <FilesMatch "\.(jpg|png|ico|otf|cur|ttf)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+</ifModule>
