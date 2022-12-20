@@ -171,7 +171,41 @@ footer p {
 .visitor__contact-page,
 .user__home-page {
     padding: 10rem 0;
+    background: url(../medias/img/visitor/laser_game.png);
     background-color: var(--second-background-color);
+    background-size: cover;
+    height: 100vh;
+    width: auto;
+    background-repeat: no-repeat;
+}
+
+.visitor2__home-page {
+    padding: 5rem 0;
+    background: url(../medias/img/visitor/heroe_game.jpg);
+    background-color: var(--second-background-color);
+    background-size: cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.picture-food {
+    height: 150px;
+    width: auto;
+}
+
+.visitor3__home-page {
+    padding: 5rem 0;
+    background-color: #000123;
+    height: 85vh;
+}
+
+.visitor-burger-flex {
+    display: flex;
+    justify-content: center;
+}
+.picture-food2 {
+    height: 250px;
+    width: 100%;
 }
 
 /* BACK-OFFICE HOME PAGE */
