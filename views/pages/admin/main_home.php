@@ -8,10 +8,10 @@
 		<h3>Découvre ton espace admin</h3>
 		<div class="container">
 			<div class="row d-flex align-items-center flex-column">
-				<p class="mt-4 col-8 col-sm-8 col-md-8 col-lg-6 col-xl-5">Tu es nouveau ? Au sein de l'espace administrateur de 8-Bit Burger tu pourras créer les recettes de burgers de ton choix et ainsi devenir un vrai pro des recettes de burgers faits maison ! Tu pourras également les modifier à ta convenance et les supprimer.</p>
+				<p class="mt-4 col-8 col-sm-8 col-md-8 col-lg-6 col-xl-5">Tu es nouveau ? Au sein de l'espace administrateur de 8-Bit Burger tu pourras créer les recettes de burgers de ton choix et ainsi devenir un vrai pro des recettes de burgers fait maison ! Tu pourras également les modifier à ta convenance et les supprimer.</p>
 				<p class="mb-5 col-8 col-sm-8 col-md-8 col-lg-6 col-xl-5">Tu peux aussi consulter les comptes utilisateurs existants. La gestion des comptes utilisateurs est uniquement réservé au compte super administrateur.</p>
 			</div>
 		</div>
-		<img src="medias/img/admin/burger_smile.png" alt="image de burger">
+		<p><img src="medias/img/admin/burger_smile.png" alt="image de burger"></p>
 	</article>
 </section>

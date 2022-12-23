@@ -6,7 +6,7 @@
 	<article>
 		<h2 class="mt-3 mb-5 col-8 mx-auto">Accès à l'espace administrateur</h2>
 		<h3>Rejoins le côté obscur</h3>
-		<p class="mt-4 mb-5 mx-auto px-5">Un espace dédié pour créer tes recettes de burgers <span>et préparer tes listes de courses !</span></p>
+		<p class="mt-4 mb-5 mx-auto px-5">Un espace dédié pour créer tes recettes de burgers <span>et consulter la liste des utilisateurs !</span></p>
 		<p><a class="btn btn-success text-uppercase mx-auto mb-4" href="#" role="button" data-bs-toggle="modal" data-bs-target="#admin-registration">Inscription <i class="fa-solid fa-arrow-right ps-2"></i></a></p>
 		<p><a class="btn btn-danger text-uppercase mx-auto" href="#" role="button" data-bs-toggle="modal" data-bs-target="#admin-login">Connexion <i class="fa-solid fa-arrow-right ps-2"></i></a></p>
 	</article>
@@ -26,14 +26,14 @@
 						<label for="admin-email-login" class="form-label">Email:</label>
 						<input type="email" class="form-control" name="adminEmail" id="admin-email-login" placeholder="Email" required>
 						<div class="invalid-feedback">
-							Merci d'indiquer un email valide.
+							Email invalide.
 						</div>
 					</div>
 					<div class="mb-5">
 						<label for="admin-password-login" class="form-label">Mot de passe:</label>
 						<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="adminPassword" id="admin-password-login" placeholder="Mot de passe" required>
 						<div class="invalid-feedback">
-							Merci d'indiquer un mot de passe valide.
+							Mot de passe invalide.
 						</div>
 					</div>
 					<button class="btn btn-primary text-uppercase mx-auto d-block" type="submit">Connexion</button>
