@@ -4,6 +4,7 @@ namespace Models;
 
 class Create extends DbConnection
 {
+    private $data;
     private $sql;
     private $query;
 
@@ -12,16 +13,11 @@ class Create extends DbConnection
     private function newUserAccount($username, $firstname, $lastname, $email, $password)
     {
         try {
+        $this->data = [$username, $firstname, $lastname, $email, $password];
         $this->sql = "INSERT INTO user (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)";
-        $this->query = $this->getDbConn()->prepare($this->sql);
-        $this->query->bindValue(1, $username);
-        $this->query->bindValue(2, $firstname);
-        $this->query->bindValue(3, $lastname);
-        $this->query->bindValue(4, $email);
-        $this->query->bindValue(5, $password);
-        $this->query->execute();
-        } catch(\PDOException $err) {
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $err->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+        $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+        } catch(\PDOException $e) {
+            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
         }
     }
 
@@ -30,21 +26,33 @@ class Create extends DbConnection
         $this->newUserAccount($username, $firstname, $lastname, $email, $password);
     } 
 
+    // ADDING A NEW COMMENT 
+    private function addNewComment($commentTitle, $content, $rating, $title, $username)
+    {
+        try {
+            $this->data = [$commentTitle, $content, $rating, $title, $username];
+            $this->sql = "INSERT INTO comment (commentTitle, content, rating, title, username) VALUES (?, ?, ?, ?, ?)";
+            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+        } catch (\PDOException $e) {
+            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+        }
+    }
+
+    public function createComment($commentTitle, $content, $rating, $title, $username)
+    {
+        $this->addNewComment($commentTitle, $content, $rating, $title, $username);
+    } 
+
     // ADMIN CONTENT
     // ADMIN REGISTRATION
     private function newAdminAccount($adminUsername, $adminFirstname, $adminLastname, $adminEmail, $adminPassword)
     {
         try {
+            $this->data = [$adminUsername, $adminFirstname, $adminLastname, $adminEmail, $adminPassword];
             $this->sql = "INSERT INTO admin (adminUsername, adminFirstname, adminLastname, adminEmail, adminPassword) VALUES (?, ?, ?, ?, ?)";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->bindValue(1, $adminUsername);
-            $this->query->bindValue(2, $adminFirstname);
-            $this->query->bindValue(3, $adminLastname);
-            $this->query->bindValue(4, $adminEmail);
-            $this->query->bindValue(5, $adminPassword);
-            $this->query->execute();
-        } catch(\PDOException $err) {
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $err->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+        } catch(\PDOException $e) {
+            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
         }
     }
 
@@ -54,28 +62,19 @@ class Create extends DbConnection
     } 
 
     // ADDING A NEW RECIPE (CRUD)
-    private function addNewRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps)
+    private function addNewRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername)
     {
         try {
-            $this->sql = "INSERT INTO recipe (title, description, prepTime, bakeTime, totalTime, difficulty, cost, ingredients, steps) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->bindValue(1, $title);
-            $this->query->bindValue(2, $description);
-            $this->query->bindValue(3, $prepTime, \PDO::PARAM_INT);
-            $this->query->bindValue(4, $bakeTime, \PDO::PARAM_INT);
-            $this->query->bindValue(5, $totalTime, \PDO::PARAM_INT);
-            $this->query->bindValue(6, $difficulty);
-            $this->query->bindValue(7, $cost);
-            $this->query->bindValue(8, $ingredients);
-            $this->query->bindValue(9, $steps);
-            $this->query->execute();
-        } catch(\PDOException $err) {
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $err->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            $this->data = [$title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername];
+            $this->sql = "INSERT INTO recipe (title, description, prepTime, bakeTime, totalTime, difficulty, cost, ingredients, steps, adminUsername) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+        } catch(\PDOException $e) {
+            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
         }
     }
 
-    public function addRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps)
+    public function addRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername)
     {
-        $this->addNewRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps);
-    } 
+        $this->addNewRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername);
+    }
 }
