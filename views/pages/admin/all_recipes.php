@@ -42,7 +42,6 @@
             </div>
         </div>
     </article>
-
     <!-- MODAL: CREATING A NEW RECIPE -->
     <div id="add-recipe__modal" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="creating-recipe__modal" aria-hidden="true">
         <div class="modal-dialog">
@@ -56,47 +55,47 @@
                         <div class="mb-3">
                             <input type="hidden" class="form-control" name="adminUsername" value="<?= htmlspecialchars($_SESSION['adminUsername']); ?>" required>
                             <label for="recipe-add-title" class="form-label">Titre :</label>
-                            <input type="text" class="form-control" name="title" id="recipe-add-title" required>
+                            <input type="text" class="form-control" name="title" maxlength="50" id="recipe-add-title" required>
                             <div class="invalid-feedback">Titre manquant.</div>
                         </div>
                         <div class="mb-3">
                             <label for="recipe-add-description" class="form-label">Description:</label>
-                            <textarea type="text" class="form-control" name="description" id="recipe-add-description" rows="5" required></textarea>
+                            <textarea type="text" class="form-control" name="description" maxlength="100" id="recipe-add-description" rows="5" required></textarea>
                             <div class="invalid-feedback">Description manquante.</div>
                         </div>
                         <div class="mb-3">
                             <label for="recipe-add-ingredients" class="form-label">Ingrédients:</label>
-                            <textarea class="form-control" name="ingredients" rows="10" id="recipe-add-ingredients" required></textarea>
+                            <textarea class="form-control" name="ingredients" rows="10" maxlength="300" id="recipe-add-ingredients" required></textarea>
                             <div class="invalid-feedback">Ingrédients manquants.</div>
                         </div>
                         <div class="mb-3">
                             <label for="recipe-add-steps">Etapes:</label>
-                            <textarea class="form-control" name="steps" rows="10" id="recipe-add-steps" required></textarea>
+                            <textarea class="form-control" name="steps" rows="10" maxlength="650" id="recipe-add-steps" required></textarea>
                             <div class="invalid-feedback">Etapes manquantes.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="recipe-add-preptime" class="form-label">Temps de préparation (minutes):</label>
+                            <label for="recipe-add-preptime" class="form-label">Temps de préparation (min):</label>
                             <input type="number" min="1" class="form-control" name="prepTime" id="recipe-add-preptime" required>
                             <div class="invalid-feedback">Temps de préparation manquant.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="recipe-add-baketime" class="form-label">Temps de cuisson (minutes):</label>
+                            <label for="recipe-add-baketime" class="form-label">Temps de cuisson (min):</label>
                             <input type="number" min="1" class="form-control" name="bakeTime" id="recipe-add-baketime" required>
                             <div class="invalid-feedback">Temps de cuisson manquant.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="recipe-add-totaltime" class="form-label">Temps total (minutes):</label>
+                            <label for="recipe-add-totaltime" class="form-label">Temps total (min):</label>
                             <input type="number" min="1" class="form-control" name="totalTime" id="recipe-add-totaltime" required>
                             <div class="invalid-feedback">Temps total manquant.</div>
                         </div>
                         <div class="mb-3">
                             <label for="recipe-add-difficulty" class="form-label">Difficulté:</label>
-                            <input type="text" class="form-control" name="difficulty" id="recipe-add-difficulty" required>
+                            <input type="text" class="form-control" maxlength="50" name="difficulty" id="recipe-add-difficulty" required>
                             <div class="invalid-feedback">Niveau de difficulté manquant.</div>
                         </div>
                         <div class="mb-5">
                             <label for="recipe-add-cost" class="form-label">Coût:</label>
-                            <input type="text" class="form-control" name="cost" id="recipe-add-cost" required>
+                            <input type="text" class="form-control" maxlength="50" name="cost" id="recipe-add-cost" required>
                             <div class="invalid-feedback">Coût manquant.</div>
                         </div>
                         <button class="btn btn-primary text-uppercase mx-auto d-block" type="submit">Ajouter</button>

@@ -8,20 +8,24 @@ class Validate {
 
     // USER CONTENT
     // Registration validation form
-    private function postUserRegistration($username, $firstname, $lastname, $email, $password)
+    private function postUserRegistration($username, $firstname, $lastname, $email, $password, $url)
     {
         $username = $_POST["username"];
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $url = $_POST["url"];
     }
 
-    private function validationUserRegistration($username, $firstname, $lastname, $email, $password)
+    private function validationUserRegistration($username, $firstname, $lastname, $email, $password, $url)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($username) || empty($firstname) ||empty($lastname) || empty($email) || empty($password)) {
                 exit("Un ou plusieurs champs vide(s) ⚠️");
+            }
+            if (!empty($url)) {
+                exit("Tentative de spam ⚠️");
             }
             if (!preg_match($this->regExpUsername, $username) || !filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match($this->regExpPassword, $password)) {
                 exit("Email et/ou mot de passe invalide(s) ⚠️");
@@ -31,10 +35,10 @@ class Validate {
         }
     }
 
-    public function validationNewUserAccount($username, $firstname, $lastname, $email, $password)
+    public function validationNewUserAccount($username, $firstname, $lastname, $email, $password, $url)
     {
-        $this->postUserRegistration($username, $firstname, $lastname, $email, $password);
-        $this->validationUserRegistration($username, $firstname, $lastname, $email, $password);
+        $this->postUserRegistration($username, $firstname, $lastname, $email, $password, $url);
+        $this->validationUserRegistration($username, $firstname, $lastname, $email, $password, $url);
     } 
 
     // login validation form
@@ -63,29 +67,33 @@ class Validate {
     }
 
     // New comment validation form
-    private function postNewComment($commentTitle, $content, $title, $username)
+    private function postNewComment($commentTitle, $content, $title, $username, $website)
     {
         $commentTitle = $_POST["commentTitle"];
         $content = $_POST["content"];
         $title = $_POST["title"];
         $username = $_POST["username"];
+        $website = $_POST["website"];
     }
 
-    private function validationCurrentComment($commentTitle, $content, $title, $username)
+    private function validationCurrentComment($commentTitle, $content, $title, $username, $website)
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($commentTitle) || empty($content) || empty($title) || empty($username)) {
                 exit("Un ou plusieurs champ(s) vide(s) ⚠️");
+            }
+            if (!empty($website)) {
+                exit("Tentative de spam ⚠️");
             } else {
                 return true;
             }
         }
     }
 
-    public function validationNewComment($commentTitle, $content, $title, $username)
+    public function validationNewComment($commentTitle, $content, $title, $username, $website)
     {
-        $this->postNewComment($commentTitle, $content, $title, $username);
-        $this->validationCurrentComment($commentTitle, $content, $title, $username);
+        $this->postNewComment($commentTitle, $content, $title, $username, $website);
+        $this->validationCurrentComment($commentTitle, $content, $title, $username, $website);
     }
 
     // ADMIN CONTENT
@@ -157,7 +165,8 @@ class Validate {
 		$cost = $_POST["cost"];
         $ingredients = $_POST["ingredients"];
         $steps = $_POST["steps"];
-        $adminUsername = $_POST["adminUsername"]; 	
+        $adminUsername = $_POST["adminUsername"];
+        $blog = $_POST["blog"];	
 	}
 
 	private function validationRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername) {

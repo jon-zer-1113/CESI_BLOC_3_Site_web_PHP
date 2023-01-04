@@ -1,0 +1,354 @@
+@use 'colors' as c;
+@use 'mixins' as m;
+
+/* VISITOR PAGES */
+/* VISITOR HOME PAGE*/
+.visitor__home-page {
+    background: url("../medias/img/visitor/laser_game.png");
+    padding-top: 10rem;
+
+    article {
+        padding-bottom: 25rem;
+    }
+}
+
+.visitor2__home-page {
+    padding: 8rem 0;
+    background: url("../medias/img/visitor/heroe_game.jpg");
+
+    img {
+        width: 10rem;
+    }
+}
+
+.visitor__home-page,
+.visitor2__home-page {
+    @include m.backgroundImage(100% 100%);
+}
+
+.visitor3__home-page {
+    padding: 7rem 0;
+
+    img {
+        width: 23rem;
+    }
+}
+
+/* VISITOR TEAM PRESENTATION PAGE */
+.visitor__team-page {
+    padding: 10rem 0 21rem 0;
+    background-color: c.$second-background-color;
+
+    span {
+            font-size: 1rem;
+        }
+    
+    figcaption {
+            font-size: 1.2rem;
+        }
+    
+    figcaption a {
+            text-shadow: none;
+            outline: none;
+        }
+    
+    i {
+            font-size: 2rem;
+        }
+    
+    img {
+            width: 15rem;
+        }
+}
+
+/* VISITOR CONTACT PAGE*/
+.visitor__contact-page {
+    background: url("../medias/img/visitor/city.jpg");
+    @include m.backgroundImage(100% 100%);
+}
+
+.visitor__contact-page {
+    padding: 10rem 0 39rem 0;
+}
+
+/* USER CONTENT */
+/* SHOPPING LIST MODAL (HEADER) */
+.btn-group .btn:first-child {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+/*USER REGISTRATION */
+#url {
+    display: none;
+}
+
+/* USER HOME PAGE */
+.user__home-page {
+    padding: 10rem 0 39rem 0;
+}
+
+/* USER ALL RECIPES PAGES */
+.user__all-recipes-page {
+    a {
+    border-radius: 1.5rem;
+    padding: 0.5rem 2.5rem;
+    }
+
+    img {
+    width: 20rem;
+    }
+}
+
+/* USER RECIPE PAGE */
+#print-gap {
+    margin-bottom: 5rem;
+}
+
+.recipe-title,
+.date-comment,
+.username-comment {
+    font-size: 1.1rem;
+}
+
+.form-comment {
+    margin-top: 5rem;
+
+    aside .btn-success {
+        margin-bottom: 5rem;
+    }
+}
+
+.user__recipe-page {
+    form {
+        width: 40rem;
+        background-color: c.$third-background-color;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 30rem;
+    }
+
+    #website {
+        display: none;
+    }
+}
+
+/* USER ALL COMMENTS PAGE */
+.user__all-comments-page {
+    .container {
+        background-color: c.$third-background-color;
+        width: 40rem;
+    }
+}
+
+/* BACK-OFFICE CONTENT */
+/* BACK-OFFICE HOME PAGE (BEFORE CONNECTION) */
+.back-office__home-page {
+    background-image: url("../medias/img/admin/sky.png");
+    @include m.backgroundImage(cover);
+    padding: 10rem 0 41rem 0;
+
+    a {
+        border-radius: 1rem;
+        padding: 0.5rem 2rem;
+        width: 15rem;
+    }
+}
+
+/* BACK-OFFICE MAIN HOME PAGE */
+.back-office__main-home-page {
+    padding: 10rem 0 35rem 0;
+
+    h2 {
+        width: 75%;
+    }
+}
+
+/* BACK-OFFICE ALL RECIPES PAGE */
+tr,
+th,
+td,
+table {
+    vertical-align: middle;
+}
+
+/* BACK-OFFICE EDIT RECIPE PAGE*/
+.back-office__edit-recipe-page {
+    form {
+        background-image: linear-gradient(to right top, #051937, #062045, #072854, #093063, #0b3873);
+        border: 0.1rem solid c.$form-border-color;
+        border-radius: 2rem;
+        box-shadow: c.$form-box-shadow-color;
+        padding: 5rem;
+    }
+
+    input.form-control {
+        background: transparent;
+        border: none;
+        border-bottom: 0.1rem solid c.$form-border-color;
+        box-shadow: none;
+        border-radius: 0;
+    }  
+}
+
+/* ERROR PAGES */
+.error404__page,
+.error403__page {
+    background-color: c.$fourth-background-color;
+    color: c.$first-text-color;
+    padding: 10rem 0 32rem 0;
+}
+
+.error404__page img,
+.error403__page img {
+    width: 30rem;
+}
+
+/* COMMON CONTENT */
+h1,
+p,
+.page-link,
+.visitor__contact-page address,
+.visitor__team-page span,
+.visitor__team-page figcaption a,
+.form-comment,
+.back-office__edit-recipe-page form,
+.back-office__edit-recipe-page input.form-control,
+.back-office__edit-recipe-page form button,
+tr,
+th,
+td,
+table {
+    color: c.$first-text-color;
+}
+
+h2,
+.fa-arrow-up,
+.recipe-title,
+.date-comment,
+.visitor__team-page i:hover {
+    color: c.$second-text-color;
+}
+
+h3,
+.user__recipe-page h4,
+.back-office__recipe-page h4,
+.username-comment,
+.visitor__team-page figcaption,
+.visitor__contact-page a {
+    color: c.$third-text-color;
+}
+
+.page-link:hover,
+.page-link:focus {
+    background-color: c.$second-text-color;
+}
+
+.page-link {
+    background-color: c.$third-text-color;
+    width: 6rem;
+    padding: 0.5rem;
+}
+
+#user-account-info,
+#admin-account-info {
+    ul li {
+        color: c.$fourth-text-color;
+    }
+}
+
+.user__all-recipes-page,
+.user__all-comments-page,
+.user__recipe-page,
+.back-office__all-recipes-page,
+.back-office__all-users-superadmin-page,
+.back-office__all-users-page,
+.back-office__all-users-superadmin-page,
+.back-office__recipe-page,
+.back-office__edit-recipe-page {
+    padding: 10rem 0;
+    background-color: c.$second-background-color;
+}
+
+.user__recipe-page .current-recipe div,
+.back-office__recipe-page article div,
+.recipe-ingredients p,
+.recipe-steps p {
+    background-color: c.$third-background-color;
+    width: 30rem;
+    margin: auto;
+}
+
+.user__recipe-page .container-fluid,
+.user__recipe-page form,
+.user__all-comments-page .container,
+.back-office__recipe-page .container-fluid,
+.recipe-ingredients p,
+.recipe-steps p {
+    box-shadow: c.$other-box-shadow-color;
+}
+
+.back-office__all-recipes-page button:hover,
+.back-office__edit-recipe-page button:hover {
+    cursor: url("../medias/cursor/hamburger.cur"), default;
+}
+
+.back-office__main-home-page,
+.user__home-page {
+    background-image: url("../medias/img/common/forest.jpg");
+    @include m.backgroundImage(100% 100%);
+}
+
+.user__home-page img,
+.back-office__main-home-page img {
+    width: 6rem;
+}
+
+.visitor__home-page article p span:last-child::before,
+.visitor2__home-page span::before,
+.visitor3__home-page span::before,
+.visitor__team-page span::before,
+.visitor__contact-page span::before,
+.user__home-page span::before,
+.user__all-recipes-page span::before,
+.user__all-comments-page span::before,
+.user__recipe-page article span::before,
+#contact-information span::before,
+.back-office__edit-recipe-page span::before,
+.back-office__all-recipes-page span::before,
+.back-office__all-users-page span::before,
+.back-office__all-users-superadmin-page span::before,
+.back-office__home-page span::before {
+    @include m.lineBreak();
+}
+
+.user__recipe-page article div p,
+.back-office__recipe-page article div p {
+    margin: 0;
+}
+
+.user__recipe-page img,
+.back-office__recipe-page img {
+    width: 25rem;
+}
+
+.visitor__home-page article a,
+.visitor3__home-page a,
+.user__recipe-page .btn,
+.user__all-comments-page a {
+    border-radius: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.visitor3__home-page .container,
+.back-office__home-page a {
+    @include m.displayFlex();
+}

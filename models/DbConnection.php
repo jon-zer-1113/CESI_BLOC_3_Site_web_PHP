@@ -11,6 +11,9 @@ class DbConnection
 	private $charset = "utf8mb4";
 	private $username = "root";
 	private $password = "16.miRO47.7r";
+	private $timeZone;
+	private $errDate;
+	private $errLog;
 	
 	// DATABASE CONNECTION USING PDO
 	private function setDbConn()
@@ -18,8 +21,11 @@ class DbConnection
 		try {
 			$this->dbConn = new \PDO('mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dbname . ';charset=' . $this->charset . ';', $this->username, $this->password);
 			$this->dbConn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-		} catch(\PDOException $err) {
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $err->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+		} catch(\PDOException $e) {
+			$this->timeZone = date_default_timezone_set('Europe/Paris');
+			$this->errDate = date('d-m-Y 📅 H:i:s ⏰');
+			$this->errLog = file_put_contents('logs/database/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
+            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
         }
 	}
 

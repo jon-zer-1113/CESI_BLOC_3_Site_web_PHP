@@ -1,0 +1,34 @@
+@use 'colors' as c;
+
+/* CSS RESET */
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "TT Octosquares";
+    src: url("../medias/font/TT_octosquares/TT_Octosquares_regular.ttf") format("truetype"), url("../medias/font/TT_octosquares/TT_Octosquares_regular.otf") format("otf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "TT Octosquares", Arial, Helvetica, sans-serif;
+}
+
+a:hover {
+    transition: 0.2s ease-in;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-link:hover {
+    color: c.$first-hover-text-color;
+}
+
+.btn-close:focus {
+    box-shadow: none;
+}

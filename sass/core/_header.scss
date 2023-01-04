@@ -1,0 +1,47 @@
+@use 'colors' as c;
+@use 'mixins' as m;
+
+/* HEADER */
+/* COMMON CONTENT */
+/* Main properties */
+.navbar {
+    background-color: c.$first-background-color;
+    border-bottom: 0.2rem solid transparent;
+    border-image: linear-gradient(to right, #00deff, #00a4d6, #006ca6, #003870, #060639);
+    border-image-slice: 30%;
+    white-space: nowrap;
+}
+
+/* Changing border-image on scroll (js) */
+.changing-header {
+    transition: all 0.5s linear;
+    border-bottom: 0.2rem solid transparent;
+    border-image: linear-gradient(to right, #051937, #3b225a, #7e1667, #be0058, #eb122f);
+    border-image-slice: 30%;
+}
+
+.navbar-nav {
+    text-align: right;
+}
+
+/* logo*/
+.navbar img {
+    width: 20rem;
+}
+
+.nav-item {
+    @include m.displayFlex();
+
+}
+
+.nav-link {
+    font-size: 0.8rem;
+    color: c.$first-text-color;
+}
+
+/* icons */
+.fa-user,
+.fa-user-plus,
+.fa-right-from-bracket {
+    font-size: 1.5rem;
+}
