@@ -1,0 +1,16 @@
+@mixin lineBreak() {
+    content: "\a";
+    white-space: pre;
+}
+
+@mixin displayFlex() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin backgroundImage($size) {
+    background-size: $size;
+    background-repeat: no-repeat;
+}
+

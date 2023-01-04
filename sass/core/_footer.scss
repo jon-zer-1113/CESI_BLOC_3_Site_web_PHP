@@ -1,0 +1,16 @@
+@use 'colors' as c;
+
+/* FOOTER */
+footer {
+    background-color: c.$first-background-color;
+    padding: 0.5rem 0;
+}
+
+footer p {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.fa-arrow-up:hover {
+    color: c.$first-hover-text-color;
+}

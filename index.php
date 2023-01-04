@@ -1,7 +1,6 @@
 <?php
-// Error reporting (development stage)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 // Including the autoloader
@@ -9,7 +8,7 @@ require_once __DIR__ . '/vendor/autoloader.php';
 
 // URL 
 $page = $_GET['p'];
-if (isset($page)) {
+if (array_key_exists('p', $_GET)) {
 	switch ($page) {
 		case 'accueil':
 			$controller = new Controllers\MainController();

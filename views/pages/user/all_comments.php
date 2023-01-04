@@ -9,8 +9,8 @@
     </article>
 
     <article>
-        <h2>Liste des commentaires <i class="fa-regular fa-comment"></i></h2>
-        <div class="container mt-5 mb-5 py-5 mx-auto">
+        <h2 class="col-8 mx-auto">Liste des commentaires <i class="fa-regular fa-comment"></i></h2>
+        <div class="container mb-5 px-4 py-2 mx-auto">
             <?php foreach ($this->comments as $comment) : ?>
                 <p class="recipe-title col-8 mx-auto pt-5"><?= htmlspecialchars($comment['title'], ENT_COMPAT) ?></p>
                 <div class="d-flex justify-content-center">

@@ -1,0 +1,48 @@
+/* ANIMATIONS */
+/* VISITOR CONTENT */
+/* VISITOR HOME PAGE*/
+.color-change-2x {
+    animation: color-change-2x 2s linear infinite alternate both;
+}
+
+@keyframes color-change-2x {
+    0% {
+        background: #000123;
+    }
+
+    100% {
+        background: #0C1D59;
+    }
+}
+
+/* COMMON CONTENT */
+.visitor__home-page h1,
+.visitor__home-page article,
+.visitor2__home-page h1,
+.visitor2__home-page article,
+.visitor3__home-page h2,
+.back-office__home-page h1,
+.back-office__home-page article,
+.back-office__main-home-page h1,
+.back-office__main-home-page article,
+.user__home-page h1,
+.user__home-page article {
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.top-page a:hover,
+.visitor3__home-page a:hover,
+.back-office__home-page a:hover {
+    transform: scale(1.05);
+    transition: 0.5s ease-in;
+}

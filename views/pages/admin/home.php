@@ -6,7 +6,7 @@
 	<article>
 		<h2 class="mt-3 mb-5 col-8 mx-auto">Accès à l'espace administrateur</h2>
 		<h3>Rejoins le côté obscur</h3>
-		<p class="mt-4 mb-5 mx-auto px-5">Un espace dédié pour créer tes recettes de burgers <span>et consulter la liste des utilisateurs !</span></p>
+		<p class="mt-4 mb-5 mx-auto px-5">Ici tu pourras créer tes recettes de burgers <span>et consulter la liste des utilisateurs !</span></p>
 		<p><a class="btn btn-success text-uppercase mx-auto mb-4" href="#" role="button" data-bs-toggle="modal" data-bs-target="#admin-registration">Inscription <i class="fa-solid fa-arrow-right ps-2"></i></a></p>
 		<p><a class="btn btn-danger text-uppercase mx-auto" href="#" role="button" data-bs-toggle="modal" data-bs-target="#admin-login">Connexion <i class="fa-solid fa-arrow-right ps-2"></i></a></p>
 	</article>
@@ -52,7 +52,7 @@
 				<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
 			</div>
 			<div class="modal-body">
-				<form action="index.php?p=nouvel-admin" class="needs-validation" method="POST" novalidate>
+				<form action="index.php?p=nouvel-admin" class="needs-validation" method="POST" novalidate autocomplete="on">
 					<div class="mb-3">
 						<label for="admin-username-registration" class="form-label">Nom d'utilisateur:</label>
 						<input type="text" pattern="^[A-Za-z0-9_-]*$" class="form-control" name="adminUsername" id="admin-username-registration" placeholder="Nom d'utilisateur" required>
@@ -85,7 +85,7 @@
 					<div class="mb-5">
 						<label for="admin-password-registration" class="form-label">Mot de passe:</label>
 						<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,}$" class="form-control" name="adminPassword" id="admin-password-registration" placeholder="Mot de passe" required>
-						<small class="form-text text-muted">Au moins 8 charactères, une lettre majuscule, minuscule, un chiffre et un charactère spécial</small>
+						<small class="form-text text-muted">Au moins 8 caractères, une lettre majuscule, minuscule, un chiffre et un caractère spécial</small>
 						<div class="invalid-feedback">
 							Mot de passe invalide.
 						</div>

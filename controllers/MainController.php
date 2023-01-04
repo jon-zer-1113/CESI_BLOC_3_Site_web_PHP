@@ -14,11 +14,18 @@ class MainController
 	private $adminMainLayout = 'views/layouts/admin/main_layout.php';
 	private $superAdminMainLayout = 'views/layouts/admin/super_admin_layout.php';
 	private $model;
+	private $otherModel;
+	private $otherCurrentModel;
 	private $recipeModel;
 	private $recipes;
 	private $recipe;
 	private $hashedPassword;
+	private $userPage;
 	private $adminPage;
+	private $otherCurrentUserPage;
+	private $otherCurrentAdminPage;
+	private $otherUserPage;
+	private $otherAdminPage;
 	private $users;
 	private $userModel;
 	private $validation;
@@ -87,9 +94,13 @@ class MainController
 	{
 		$this->hashedPassword = password_hash(htmlspecialchars($_POST['password']), PASSWORD_BCRYPT);
 		$this->model = new \Models\Create();
+		$this->otherCurrentModel = new \Models\Read();
+		$this->otherModel = new \Models\Read();
 		$this->validation  = new \Validation\Validate();
-		$this->newValidation = $this->validation->validationNewUserAccount(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['firstname']), htmlspecialchars($_POST['lastname']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['password']));
-		$this->adminPage = $this->model->createNewUserAccount(htmlspecialchars($_POST['username']), htmlspecialchars(trim($_POST['firstname'])), htmlspecialchars(trim($_POST['lastname'])), htmlspecialchars(trim($_POST['email'])), $this->hashedPassword);
+		$this->otherCurrentUserPage = $this->otherCurrentModel->readUserAccountUsernameExistence(htmlspecialchars($_POST['username']));
+		$this->otherUserPage = $this->otherModel->readUserAccountEmailExistence(htmlspecialchars($_POST['email']));
+		$this->newValidation = $this->validation->validationNewUserAccount(htmlspecialchars($_POST['username']), htmlspecialchars($_POST['firstname']), htmlspecialchars($_POST['lastname']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['password']), htmlspecialchars($_POST['url']));
+		$this->userPage = $this->model->createNewUserAccount(htmlspecialchars($_POST['username']), htmlspecialchars(trim($_POST['firstname'])), htmlspecialchars(trim($_POST['lastname'])), htmlspecialchars(trim($_POST['email'])), $this->hashedPassword);
 		exit(header('Location: index.php?p=accueil'));
 	}
 
@@ -104,7 +115,7 @@ class MainController
 		$this->model = new \Models\Read();
 		$this->validation  = new \Validation\Validate();
 		$this->newValidation = $this->validation->validationUserAccount(htmlspecialchars($_POST['email']), htmlspecialchars($_POST['password']));
-		$this->adminPage = $this->model->readCurrentUserAccount(htmlspecialchars($_POST['email']), htmlspecialchars($_POST['password']));
+		$this->userPage = $this->model->readCurrentUserAccount(htmlspecialchars($_POST['email']), htmlspecialchars($_POST['password']));
 		exit(header('Location: index.php?p=accueil-utilisateur'));
 	}
 
@@ -161,7 +172,7 @@ class MainController
 	{
 		$this->commentModel = new \Models\Create();
 		$this->validation  = new \Validation\Validate();
-		$this->newValidation = $this->validation->validationNewComment(htmlspecialchars($_POST['commentTitle'], ENT_COMPAT), htmlspecialchars($_POST['content'], ENT_COMPAT), htmlspecialchars($_POST['title'], ENT_COMPAT), htmlspecialchars($_POST['username']));
+		$this->newValidation = $this->validation->validationNewComment(htmlspecialchars($_POST['commentTitle'], ENT_COMPAT), htmlspecialchars($_POST['content'], ENT_COMPAT), htmlspecialchars($_POST['title'], ENT_COMPAT), htmlspecialchars($_POST['username']), htmlspecialchars($_POST['website']));
 		$this->comment = $this->commentModel->createComment(htmlspecialchars($_POST['commentTitle'], ENT_COMPAT), htmlspecialchars($_POST['content'], ENT_COMPAT), htmlspecialchars($_POST['rating']), htmlspecialchars($_POST['title'], ENT_COMPAT), htmlspecialchars($_POST['username']));
 		exit(header('Location: index.php?p=commentaires-utilisateurs'));
 	}
@@ -202,7 +213,7 @@ class MainController
 	// BACK-OFFICE ACCESS ONLY FOR THE SUPER ADMIN ACCOUNT
 	private function sessionSuperAdmin()
 	{
-		if (($_SESSION['adminId'] !== 1)) {
+		if (($_SESSION['adminUsername'] !== "superAdmin")) {
 			exit(header('Location: index.php?p=comptes-utilisateurs'));
 		}
 	}
@@ -217,7 +228,11 @@ class MainController
 	{
 		$this->hashedPassword = password_hash(htmlspecialchars($_POST['adminPassword']), PASSWORD_BCRYPT);
 		$this->model = new \Models\Create();
+		$this->otherCurrentModel = new \Models\Read();
+		$this->otherModel = new \Models\Read();
 		$this->validation  = new \Validation\Validate();
+		$this->otherCurrentAdminPage = $this->otherCurrentModel->readAdminAccountUsernameExistence(htmlspecialchars($_POST['adminUsername']));
+		$this->otherAdminPage = $this->otherModel->readAdminAccountEmailExistence(htmlspecialchars($_POST['adminEmail']));
 		$this->newValidation = $this->validation->validationNewAdminAccount(htmlspecialchars($_POST['adminUsername']), htmlspecialchars($_POST['adminFirstname']), htmlspecialchars($_POST['adminLastname']), htmlspecialchars($_POST['adminEmail']), htmlspecialchars($_POST['adminPassword']));
 		$this->adminPage = $this->model->createNewAdminAccount(htmlspecialchars($_POST['adminUsername']), htmlspecialchars(trim($_POST['adminFirstname'])), htmlspecialchars(trim($_POST['adminLastname'])), htmlspecialchars(trim($_POST['adminEmail'])), $this->hashedPassword);
 		exit(header('Location: index.php?p=accueil-admin'));

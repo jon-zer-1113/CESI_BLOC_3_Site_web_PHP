@@ -1,0 +1,282 @@
+@use 'breakpoints' as b;
+@use 'colors' as c;
+@use 'mixins' as m;
+
+/* MEDIA QUERIES*/
+@media only screen and (max-width: b.$xxl) {
+    /* COMMON CONTENT */
+    .back-office__main-home-page,
+    .back-office__home-page,
+    .visitor__contact-page,
+    .user__home-page {
+        padding: 10rem 0 28rem 0;
+    }
+}
+
+@media only screen and (max-width: b.$xl) {
+    /* COMMON CONTENT */
+    .back-office__main-home-page,
+    .back-office__home-page,
+    .visitor__contact-page,
+    .visitor__team-page,
+    .user__home-page {
+        padding: 10rem 0 22rem 0;
+    }
+}
+
+@media only screen and (max-width: b.$lg) {
+    /* HEADER */
+    .navbar img {
+        width: 15rem;
+    }
+
+    /* ERROR PAGES */
+    .error404__page,
+    .error403__page {
+        padding: 10rem 0 10rem 0;
+    }
+
+    /* COMMON CONTENT */
+    .back-office__main-home-page,
+    .back-office__home-page,
+    .visitor__contact-page,
+    .visitor__team-page,
+    .user__home-page {
+        padding: 10rem 0 23rem 0;
+    }
+}
+
+@media only screen and (max-width: b.$md) {
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* HEADER */
+    .first-link:first-child {
+        margin-top: 1rem;
+    }
+
+    .nav-item {
+        display: block;
+    }
+
+    /* FOOTER */
+    footer p {
+        font-size: 0.6rem;
+    }
+
+    /* VISITOR HOME PAGE */
+    .visitor__home-page {
+        background: url("../medias/img/visitor/laser_game_responsive.jpg");
+        @include m.backgroundImage(100% 100%);
+
+        h3 span::before {
+            content: "\a";
+            white-space: pre;
+        }
+    }
+
+
+    .visitor2__home-page {
+        background: url("../medias/img/visitor/heroe_game_responsive.jpg");
+        @include m.backgroundImage(100% 100%);
+
+        img {
+            width: 8rem;
+        }
+    }
+    
+    .visitor3__home-page {
+        .container {
+            @include m.displayFlex();
+            flex-direction: column;
+        }
+
+        img {
+        width: 18rem;
+        }
+    }
+
+    /* VISITOR CONTACT PAGE */
+    .visitor__contact-page {
+        background: url("../medias/img/visitor/city_responsive.jpg");
+        @include m.backgroundImage(100% 100%);
+    }
+
+    /* USER CONTENT */
+    /* USER ALL RECIPES PAGE */
+    .user__all-recipes-page img {
+        width: 18rem;
+    }
+
+    /* USER RECIPE PAGE */
+    .user__recipe-page {
+        form {
+            width: 19rem;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 15rem;
+        }
+    }
+    
+    /* USER ALL COMMENTS PAGE */
+    .user__all-comments-page .container {
+        width: 25rem;
+    }
+
+    /* BACK-OFFICE CONTENT (ADMIN) */
+    .back-office__edit-recipe-page form {
+        padding: 3rem 2rem;
+    }
+
+    /* COMMON CONTENT */
+    .back-office__main-home-page,
+    .back-office__home-page,
+    .visitor__contact-page,
+    .visitor__team-page,
+    .user__home-page {
+        padding: 10rem 0 20rem 0;
+    }
+
+    .back-office__main-home-page,
+    .user__home-page {
+        background-image: url("../medias/img/common/forest_responsive.jpg");
+        @include m.backgroundImage(cover);
+    }
+
+    .user-recipe-page img,
+    .back-office__recipe-page img {
+        width: 22rem;
+    }
+}
+
+@media only screen and (max-width: b.$sm) {
+    /* VISITOR CONTENT */
+    /* VISITOR HOME */
+    .visitor__home-page {
+        h1 span::before {
+            @include m.lineBreak();
+        }
+
+        article {
+            padding-bottom: 10rem;
+        }
+    }
+
+    /* ERROR PAGES */
+    .error404__page,
+    .error403__page {
+        padding: 10rem 0 13rem 0;
+    }
+    
+    .error404__page img,
+    .error403__page img {
+        width: 22rem;
+    }
+
+    /* TEAM PRESENTATION PAGE */
+    .visitor__team-page {
+        padding: 10rem 0;
+    }
+
+    /* USER CONTENT */
+    /* SHOPPING LIST MODAL*/
+    .btn-outline-danger,
+    .btn-outline-success,
+    .btn-outline-primary {
+        font-size: 0.8rem;
+    }
+
+    /* USER RECIPE PAGE*/
+    .user__all-recipes-page img {
+        width: 15rem;
+    }
+
+    /* USER RECIPE PAGE*/
+    .user__recipe-page .current-recipe div {
+        background-color: c.$third-background-color;
+        width: 20rem;
+        margin: auto;
+    }
+
+    /* USER ALL COMMENTS PAGE */
+    .user__all-comments-page .container {
+        width: 18rem;
+    }
+
+    /* BACK-OFFICE CONTENT (ADMIN) */
+    /* BACK-OFFICE TABLES */
+    .back-office__all-users-page table,
+    .back-office__all-recipes-page table {
+        font-size: 0.5rem;
+    }
+
+    .back-office__all-users-superadmin-page table {
+        font-size: 0.4rem;
+    }
+
+    .back-office__all-recipes-page table i,
+    .back-office__all-users-superadmin-page table i {
+        font-size: 0.7rem;
+    }
+
+    /* BACK-OFFICE EDIT RECIPE PAGE */
+    .back-office__edit-recipe-page form {
+        padding: 3rem 2rem;
+    }
+
+    /* ERROR PAGES */
+    .error404__page,
+    .error403__page {
+        padding: 10rem 0;
+    }
+
+    .error404__page img,
+    .error403__page img {
+        width: 18rem;
+    }
+
+    /* COMMON CONTENT*/
+    .back-office__main-home-page,
+    .back-office__home-page,
+    .visitor__contact-page,
+    .user__home-page {
+        padding: 10rem 0 15rem 0;
+    }
+
+    .user__all-recipes-page span::before,
+    .back-office__all-recipes-page span::before,
+    .back-office__all-users-page span::before,
+    .back-office__all-users-superadmin-page span::before,
+    .back-office__home-page span::before {
+        content: "\a";
+        white-space: normal;
+    }
+
+    .user__all-recipes-page article p,
+    .back-office__all-recipes-page article p,
+    .back-office__all-superadmin-page article p,
+    .back-office__all-users-page article p {
+        padding: 0 4rem;
+    }
+
+    .user__recipe-page img,
+    .back-office__recipe-page img {
+        width: 18rem;
+    }
+
+    .user__recipe-page article div,
+    .back-office__recipe-page article div,
+    .recipe-ingredients p,
+    .recipe-steps p {
+        width: 20rem;
+    }
+}
