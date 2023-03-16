@@ -3,7 +3,14 @@
 <h1 align="center">Re 👋, ceci est le Repo' pour le bloc 3 du CESI</h1>
 <h3 align="center">Thème: "Développer un site web et son application mobile"</h3><br>
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=jon-zer-1113&label=Profile%20views&color=0e75b6&style=flat" alt="jon-zer-1113" /> </p><br><br>
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=jon-zer-1113&label=Profile%20views&color=0e75b6&style=flat" alt="jon-zer-1113" /> </p><br>
+
+<h4>Le site web est en ligne 😁 (Merci Mélanie ! ^^)<br><br>
+Vous pouvez le consulter en cliquant ici:</h4>
+
+[8bit-burger.melanieroussy.fr](https://8bit-burger.melanieroussy.fr/)
+
+<br><br>
 
 ## **L'équipe:** <br><br>
 
@@ -29,7 +36,7 @@
 
 - 👨‍💻 Front-end: **HTML, Bootstrap, CSS, JavaScript, SASS**
 
-- 🎨 Maquette: ** Adobe XD **
+- 🎨 Maquette: **Adobe XD**
 
 <p><img src="medias/img/github_screenshot.jpg" alt="screenshot du site 8Bit-Burger"></p>
 
