@@ -6,24 +6,32 @@ class Update extends DbConnection
 {
     private $data;
     private $sql;
-    private $query;
+    private $stmt;
     private $timeZone;
     private $errDate;
     private $errLog;
 
-    // ADMIN CONTENT
-    // UPDATE A SPECIFIC RECIPE (CRUD)
     private function updateCurrentRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $recipeId)
     {
         try {
-            $this->data = [$title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $recipeId];
             $this->sql = "UPDATE recipe SET title = ?, description = ?, prepTime = ?, bakeTime = ?, totalTime = ?, difficulty = ?, cost = ?, ingredients = ?, steps = ? WHERE recipeId = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $title);
+            $this->stmt->bindValue(2, $description);
+            $this->stmt->bindValue(3, $prepTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(4, $bakeTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(5, $totalTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(6, $difficulty);
+            $this->stmt->bindValue(7, $cost);
+            $this->stmt->bindValue(8, $ingredients);
+            $this->stmt->bindValue(9, $steps);
+            $this->stmt->bindValue(10, $recipeId, \PDO::PARAM_INT);
+            $this->stmt->execute();
         } catch(\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/update/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
