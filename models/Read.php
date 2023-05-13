@@ -6,22 +6,20 @@ class Read extends DbConnection
 {
     private$data;
     private $sql;
-    private $query;
+    private $stmt;
     private $result;
     private $timeZone;
     private $errDate;
     private $errLog;
     
-    // USER CONTENT
-    // LOGIN IN
     private function readUserAccount($email, $password)
     {
         try {
-            $this->data = [$email];
             $this->sql = "SELECT * FROM user WHERE email = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $email);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if (!$this->result || !password_verify($password, $this->result['password'])) {
                 exit("Informations de connexion invalides ⚠️");
             } else {
@@ -36,7 +34,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -45,15 +43,14 @@ class Read extends DbConnection
         return $this->readUserAccount($email, $password);
     }
 
-    // CHECK IF USER EMAIL ALREADY EXISTS
     private function readUserAccountEmailCurrentExistence($email)
     {
         try {
-            $this->data = [$email];
             $this->sql = "SELECT * FROM user WHERE email = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $email);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if ($this->result) {
                 exit("Ce compte existe déjà ⚠️");
             }
@@ -61,7 +58,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -70,15 +67,14 @@ class Read extends DbConnection
         return $this->readUserAccountEmailCurrentExistence($email);
     }
 
-    // CHECK IF USER USERNAME ALREADY EXISTS
     private function readUserAccountUsernameCurrentExistence($username)
     {
         try {
-            $this->data = [$username];
             $this->sql = "SELECT * FROM user WHERE username = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $username);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if ($this->result) {
                 exit("Ce compte existe déjà ⚠️");
             }
@@ -86,7 +82,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -95,19 +91,18 @@ class Read extends DbConnection
         return $this->readUserAccountUsernameCurrentExistence($username);
     }
 
-    // DISPLAY A SPECIFIC COMMENT
     private function getCurrentComments()
     {
         try {
             $this->sql = "SELECT commentTitle, content, rating, title, username, creationDate FROM comment";
-            $this->query = $this->getDbConn($this->sql)->prepare($this->sql);
-            $this->query->execute();
-            return $this->query->fetchAll();
+            $this->stmt = $this->getDbConn($this->sql)->prepare($this->sql);
+            $this->stmt->execute();
+            return $this->stmt->fetchAll();
         } catch (\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -116,16 +111,14 @@ class Read extends DbConnection
         return $this->getCurrentComments();
     }
 
-    // ADMIN CONTENT
-    // LOGIN IN
     private function readAdminAccount($adminEmail, $adminPassword)
     {
         try {
-            $this->data = [$adminEmail];
             $this->sql = "SELECT * FROM admin WHERE adminEmail = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $adminEmail);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if (!$this->result || !password_verify($adminPassword, $this->result['adminPassword'])) {
                 exit("Informations de connexion invalides ⚠️");
             } else {
@@ -140,7 +133,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -149,15 +142,14 @@ class Read extends DbConnection
         return $this->readAdminAccount($adminEmail, $adminPassword);
     }
 
-    // CHECK IF ADMIN EMAIL ALREADY EXISTS
     private function readAdminAccountEmailCurrentExistence($adminEmail)
     {
         try {
-            $this->data = [$adminEmail];
             $this->sql = "SELECT * FROM admin WHERE adminEmail = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $adminEmail);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if ($this->result) {
                 exit("Ce compte existe déjà ⚠️");
             }
@@ -165,7 +157,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -174,15 +166,14 @@ class Read extends DbConnection
         return $this->readAdminAccountEmailCurrentExistence($adminEmail);
     }
 
-    // CHECK IF USER ADMIN USERNAME ALREADY EXISTS
     private function readAdminAccountUsernameCurrentExistence($adminUsername)
     {
         try {
-            $this->data = [$adminUsername];
             $this->sql = "SELECT * FROM admin WHERE adminUsername = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            $this->result = $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $adminUsername);
+            $this->stmt->execute();
+            $this->result = $this->stmt->fetch();
             if ($this->result) {
                 exit("Ce compte existe déjà ⚠️");
             }
@@ -190,7 +181,7 @@ class Read extends DbConnection
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -199,20 +190,18 @@ class Read extends DbConnection
         return $this->readAdminAccountUsernameCurrentExistence($adminUsername);
     }
 
-    // USER + ADMIN CONTENT
-    // ALL THE RECIPES (CRUD)
     private function getCurrentRecipes()
     {
         try {
             $this->sql = "SELECT recipeId, title, adminUsername, creationDate FROM recipe";
-            $this->query = $this->getDbConn($this->sql)->prepare($this->sql);
-            $this->query->execute();
-            return $this->query->fetchAll();
+            $this->stmt = $this->getDbConn($this->sql)->prepare($this->sql);
+            $this->stmt->execute();
+            return $this->stmt->fetchAll();
         } catch (\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -221,20 +210,19 @@ class Read extends DbConnection
         return $this->getCurrentRecipes();
     }
 
-    // DISPLAY A SPECIFIC RECIPE (CRUD)
     private function getCurrentRecipe($recipeId)
     {
         try {
-            $this->data = [$recipeId];
             $this->sql = "SELECT recipeId, title, description, prepTime, bakeTime, totalTime, difficulty, cost, ingredients, steps, adminUsername, creationDate FROM recipe WHERE recipeId = ?";
-            $this->query = $this->getDbConn()->prepare($this->sql);
-            $this->query->execute($this->data);
-            return $this->query->fetch();
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $recipeId, \PDO::PARAM_INT);
+            $this->stmt->execute();
+            return $this->stmt->fetch();
         } catch (\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -243,19 +231,18 @@ class Read extends DbConnection
         return $this->getCurrentRecipe($recipeId);
     }
 
-    // DISPLAY ALL THE USERS (SUPER ADMIN ONLY)
     private function getCurrentUsers()
     {
         try {
             $this->sql = "SELECT userId, username, firstname, lastname, email FROM user";
-            $this->query = $this->getDbConn($this->sql)->prepare($this->sql);
-            $this->query->execute();
-            return $this->query->fetchAll();
+            $this->stmt = $this->getDbConn($this->sql)->prepare($this->sql);
+            $this->stmt->execute();
+            return $this->stmt->fetchAll();
         } catch (\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/read/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
