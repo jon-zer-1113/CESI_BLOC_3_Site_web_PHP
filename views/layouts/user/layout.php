@@ -1,5 +1,6 @@
 <?php
 session_start();
+$this->sessionCookie();
 $this->sessionOnlyUser();
 ?><!DOCTYPE html>
 <html lang="fr">
@@ -9,8 +10,8 @@ $this->sessionOnlyUser();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="robots" content="noindex">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.min.css?v=<?= htmlspecialchars(time()); ?>">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -20,10 +21,9 @@ $this->sessionOnlyUser();
 </head>
 
 <body>
-	<!-- Header with a responsive navbar (hamburger menu) -->
 	<header>
 		<nav class="navbar navbar-dark navbar-expand-md text-uppercase fixed-top px-4">
-			<a class="navbar-brand" href="index.php?p=accueil-utilisateur"><img src="medias/img/common/8-bit_burger_logo.png" alt="8-bit Burger logo"></a>
+			<a class="navbar-brand" href="index.php?p=accueil-utilisateur"><img src="medias/img/common/8-bit_burger_logo.png" alt="8-Bit Burger logo"></a>
 			<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -40,10 +40,8 @@ $this->sessionOnlyUser();
 		</nav>
 	</header>
 
-	<!-- The right view is displayed -->
 	<main id="user-top">
 		<?php require_once $this->userView; ?>
-		<!-- MODAL: SHOPPING LIST -->
 		<div id="shopping-list" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="shopping-list__modal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -66,7 +64,6 @@ $this->sessionOnlyUser();
 			</div>
 		</div>
 
-		<!-- MODAL: SHOPPING LIST -->
 		<div id="user-account-info" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="user-account-info__modal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -86,7 +83,6 @@ $this->sessionOnlyUser();
 			</div>
 		</div>
 
-		<!-- MODAL: CONTACT INFORMATION -->
 		<div id="contact-information" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contact-user__modal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
@@ -105,15 +101,13 @@ $this->sessionOnlyUser();
 		</div>
 	</main>
 
-	<!-- Footer with an anchor and a copyright mention -->
 	<footer class="text-center text-uppercase text-light">
-		<p><a href="#user-top"><i class="fa-solid fa-arrow-up pe-2"></i></a> © 8-bit burger - Tous droits réservés</p>
+		<p><a href="#user-top"><i class="fa-solid fa-arrow-up pe-2"></i></a> © 8-Bit Burger - Tous droits réservés</p>
 	</footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	<script src="js/app.min.js"></script>
 
-	<!-- PRINT, DOWNLOAD, SEND A RECIPE BY EMAIL A SHOPPING LIST / SEND A RECIPE BY EMAIL -->
 	<script>
 		function sendEmail() {
 			let message = document.querySelector('#writing-shopping-list').value;
