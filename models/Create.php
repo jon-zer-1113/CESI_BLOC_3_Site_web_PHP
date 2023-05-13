@@ -6,24 +6,27 @@ class Create extends DbConnection
 {
     private $data;
     private $sql;
-    private $query;
+    private $stmt;
     private $timeZone;
     private $errDate;
     private $errLog;
 
-    // USER CONTENT
-    // USER REGISTRATION
     private function newUserAccount($username, $firstname, $lastname, $email, $password)
     {
         try {
-        $this->data = [$username, $firstname, $lastname, $email, $password];
-        $this->sql = "INSERT INTO user (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)";
-        $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+            $this->sql = "INSERT INTO user (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)";
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $username);
+            $this->stmt->bindValue(2, $firstname);
+            $this->stmt->bindValue(3, $lastname);
+            $this->stmt->bindValue(4, $email);
+            $this->stmt->bindValue(5, $password);
+            $this->stmt->execute();
         } catch(\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/create/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -32,18 +35,22 @@ class Create extends DbConnection
         $this->newUserAccount($username, $firstname, $lastname, $email, $password);
     } 
 
-    // ADDING A NEW COMMENT 
     private function addNewComment($commentTitle, $content, $rating, $title, $username)
     {
         try {
-            $this->data = [$commentTitle, $content, $rating, $title, $username];
             $this->sql = "INSERT INTO comment (commentTitle, content, rating, title, username) VALUES (?, ?, ?, ?, ?)";
-            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $commentTitle);
+            $this->stmt->bindValue(2, $content);
+            $this->stmt->bindValue(3, $rating);
+            $this->stmt->bindValue(4, $title);
+            $this->stmt->bindValue(5, $username);
+            $this->stmt->execute();
         } catch (\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/create/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -52,19 +59,22 @@ class Create extends DbConnection
         $this->addNewComment($commentTitle, $content, $rating, $title, $username);
     } 
 
-    // ADMIN CONTENT
-    // ADMIN REGISTRATION
     private function newAdminAccount($adminUsername, $adminFirstname, $adminLastname, $adminEmail, $adminPassword)
     {
         try {
-            $this->data = [$adminUsername, $adminFirstname, $adminLastname, $adminEmail, $adminPassword];
             $this->sql = "INSERT INTO admin (adminUsername, adminFirstname, adminLastname, adminEmail, adminPassword) VALUES (?, ?, ?, ?, ?)";
-            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $adminUsername);
+            $this->stmt->bindValue(2, $adminFirstname);
+            $this->stmt->bindValue(3, $adminLastname);
+            $this->stmt->bindValue(4, $adminEmail);
+            $this->stmt->bindValue(5, $adminPassword);
+            $this->stmt->execute();
         } catch(\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/create/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
@@ -73,18 +83,27 @@ class Create extends DbConnection
         $this->newAdminAccount($adminUsername, $adminFirstname, $adminLastname, $adminEmail, $adminPassword);
     } 
 
-    // ADDING A NEW RECIPE (CRUD)
     private function addNewRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername)
     {
         try {
-            $this->data = [$title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $adminUsername];
             $this->sql = "INSERT INTO recipe (title, description, prepTime, bakeTime, totalTime, difficulty, cost, ingredients, steps, adminUsername) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $this->query = $this->getDbConn()->prepare($this->sql)->execute($this->data);
+            $this->stmt = $this->getDbConn()->prepare($this->sql);
+            $this->stmt->bindValue(1, $title);
+            $this->stmt->bindValue(2, $description);
+            $this->stmt->bindValue(3, $prepTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(4, $bakeTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(5, $totalTime, \PDO::PARAM_INT);
+            $this->stmt->bindValue(6, $difficulty);
+            $this->stmt->bindValue(7, $cost);
+            $this->stmt->bindValue(8, $ingredients);
+            $this->stmt->bindValue(9, $steps);
+            $this->stmt->bindValue(10, $adminUsername);
+            $this->stmt->execute();
         } catch(\PDOException $e) {
             $this->timeZone = date_default_timezone_set('Europe/Paris');
             $this->errDate = date('d-m-Y 📅 H:i:s ⏰');
             $this->errLog = file_put_contents('logs/create/errors.txt', $e . $this->errDate . PHP_EOL, FILE_APPEND);
-            exit("Quelque chose ne va pas ⚠️! Merci de lire le message suivant ! ➡️ " . $e->getMessage() . " ⛔"); // Display SQLSTATE (code + message) next to the "Something went wrong!"
+            exit("Something went wrong ⚠️! Please read the following message ! ➡️ " . $e->getMessage() . " ⛔");
         }
     }
 
