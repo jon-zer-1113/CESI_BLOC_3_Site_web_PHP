@@ -5,7 +5,7 @@
     <article>
         <h2 class="mt-3 mb-5">Commentaires utilisateurs</h2>
         <h3 class="col-8 mx-auto">Les commentaires des gourmands !</h3>
-        <p class="mt-4 mb-5 col-8 mx-auto">Voici l'ensemble des commentaires qui ont été laissé par les utilisateurs de notre communauté.</p>
+        <p class="mt-4 mb-5 col-8 mx-auto">Voici l'ensemble des commentaires qui ont été laissés par les utilisateurs de notre communauté.</p>
     </article>
 
     <article>
