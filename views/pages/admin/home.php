@@ -1,5 +1,4 @@
 <?php ?>
-<!-- HOME PAGE BEFORE BEFORE ACCESSING TO THE BACK-OFFICE -->
 <section class="back-office__home-page text-center">
 	<h1>Back-office</h1>
 
@@ -12,7 +11,6 @@
 	</article>
 </section>
 
-<!-- MODAL: ADMIN LOGIN -->
 <div id="admin-login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="admin-login__modal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -43,9 +41,8 @@
 	</div>
 </div>
 
-<!-- MODAL: ADMIN REGISTRATION -->
 <div id="admin-registration" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="admin-registration__modal" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="admin-registration__modal"><i class="fa-solid fa-user-plus pe-1"></i> Inscription</h4>
