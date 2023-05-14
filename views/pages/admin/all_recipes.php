@@ -1,4 +1,3 @@
-<!-- ALL THE RECIPES ARE DISPLAYED INTO A TABLE -->
 <section class="back-office__all-recipes-page">
     <h1 class="text-center">Gestion des recettes</h1>
 
@@ -42,9 +41,9 @@
             </div>
         </div>
     </article>
-    <!-- MODAL: CREATING A NEW RECIPE -->
-    <div id="add-recipe__modal" class="modal fade" role="dialog" tabindex="-1" role="dialog" aria-labelledby="creating-recipe__modal" aria-hidden="true">
-        <div class="modal-dialog">
+
+    <div id="add-recipe__modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="creating-recipe__modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="creating-recipe__modal"><i class="fa-solid fa-circle-plus"></i> Ajoute une recette</h4>
