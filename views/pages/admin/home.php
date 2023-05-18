@@ -11,8 +11,8 @@
 	</article>
 </section>
 
-<div id="admin-login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="admin-login__modal" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+<div id="admin-login" class="modal fade" tabindex="-1" aria-labelledby="admin-login__modal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="admin-login__modal"><i class="fa-solid fa-user pe-1"></i> Connexion</h4>
@@ -41,8 +41,8 @@
 	</div>
 </div>
 
-<div id="admin-registration" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="admin-registration__modal" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+<div id="admin-registration" class="modal fade" tabindex="-1" aria-labelledby="admin-registration__modal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title" id="admin-registration__modal"><i class="fa-solid fa-user-plus pe-1"></i> Inscription</h4>
