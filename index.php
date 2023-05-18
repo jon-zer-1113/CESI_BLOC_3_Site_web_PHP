@@ -1,9 +1,16 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
-// Including the autoloader
+/**
+ * Main application entry point.
+ *
+ * This script handles the routing logic based on the "p" parameter in the query string
+ * and calls the corresponding methods in the Controllers\MainController class.
+ * It redirects to the appropriate page if the "p" parameter is missing or invalid.
+ *
+ * @require vendor/autoload.php - The autoloader file that loads all necessary classes
+ * @var string $page - The value of the "p" parameter from the query string
+ */
+
 require_once __DIR__ . '/vendor/autoloader.php';
 
 // URL 
