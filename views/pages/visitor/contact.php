@@ -14,8 +14,8 @@
         <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#contact-team" title="Écris-nous !"><i class="fa-regular fa-paper-plane"></i></button>
     </article>
     
-    <div id="contact-team" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contact-visitor__modal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="contact-team" class="modal fade" tabindex="-1" aria-labelledby="contact-visitor__modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="contact-visitor__modal"><i class="fa-regular fa-paper-plane"></i> Envoyer un email</h4>
