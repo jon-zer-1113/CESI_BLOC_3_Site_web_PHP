@@ -12,6 +12,13 @@ class Read extends DbConnection
     private $errDate;
     private $errLog;
     
+    /**
+    * Reads the user account from the database using the specified email and password.
+    *
+    * @param string $email The email of the user.
+    * @param string $password The password of the user.
+    * @throws \PDOException If an error occurs while executing the database query.
+    */
     private function readUserAccount($email, $password)
     {
         try {
@@ -42,7 +49,13 @@ class Read extends DbConnection
     {
         return $this->readUserAccount($email, $password);
     }
-
+    
+    /**
+    * Checks if a user account with the specified email already exists in the database.
+    *
+    * @param string $email The email to check.
+    * @throws \PDOException If an error occurs while executing the database query.
+    */
     private function readUserAccountEmailCurrentExistence($email)
     {
         try {
@@ -66,7 +79,13 @@ class Read extends DbConnection
     {
         return $this->readUserAccountEmailCurrentExistence($email);
     }
-
+    
+   /**
+    * Checks if a user account with the specified email already exists in the database.
+    *
+    * @param string $email The email to check.
+    * @throws \PDOException If an error occurs while executing the database query.
+    */
     private function readUserAccountUsernameCurrentExistence($username)
     {
         try {
@@ -91,6 +110,12 @@ class Read extends DbConnection
         return $this->readUserAccountUsernameCurrentExistence($username);
     }
 
+    /**
+    * Retrieves the current comments from the database.
+    *
+    * @return array An array containing the fetched comments.
+    * @throws \PDOException If an error occurs while executing the database query.
+    */
     private function getCurrentComments()
     {
         try {
@@ -110,7 +135,14 @@ class Read extends DbConnection
     {
         return $this->getCurrentComments();
     }
-
+    
+     /**
+     * Retrieves the admin account information from the database based on the provided email and password.
+     *
+     * @param string $adminEmail The email of the admin.
+     * @param string $adminPassword The password of the admin.
+     * @throws \PDOException If an error occurs while executing the database query.
+     */
     private function readAdminAccount($adminEmail, $adminPassword)
     {
         try {
@@ -141,7 +173,12 @@ class Read extends DbConnection
     {
         return $this->readAdminAccount($adminEmail, $adminPassword);
     }
-
+    
+    /**
+    * Reads the existence of the admin account email currently.
+    *
+    * @param string $adminEmail The email address of the admin account.
+    */
     private function readAdminAccountEmailCurrentExistence($adminEmail)
     {
         try {
@@ -165,7 +202,13 @@ class Read extends DbConnection
     {
         return $this->readAdminAccountEmailCurrentExistence($adminEmail);
     }
-
+    
+    /**
+    * Checks the current existence of an admin account by username.
+    *
+    * @param string $adminUsername The username of the admin account.
+    * @return void
+    */
     private function readAdminAccountUsernameCurrentExistence($adminUsername)
     {
         try {
@@ -189,7 +232,12 @@ class Read extends DbConnection
     {
         return $this->readAdminAccountUsernameCurrentExistence($adminUsername);
     }
-
+    
+    /**
+    * Retrieves the current recipes from the database.
+    *
+    * @return array An array containing the recipeId, title, adminUsername, and creationDate of each recipe.
+    */
     private function getCurrentRecipes()
     {
         try {
@@ -209,7 +257,13 @@ class Read extends DbConnection
     {
         return $this->getCurrentRecipes();
     }
-
+    
+    /**
+    * Retrieves the details of a specific recipe from the database.
+    *
+    * @param int $recipeId The ID of the recipe to retrieve.
+    * @return array|false An array containing the recipeId, title, description, prepTime, bakeTime, totalTime, difficulty, cost, ingredients, steps, adminUsername, and creationDate of the recipe. Returns false if the recipe does not exist.
+    */
     private function getCurrentRecipe($recipeId)
     {
         try {
@@ -230,7 +284,12 @@ class Read extends DbConnection
     {
         return $this->getCurrentRecipe($recipeId);
     }
-
+    
+    /**
+    * Retrieves the current list of users from the database.
+    *
+    * @return array An array containing the userId, username, firstname, lastname, and email of each user.
+    */
     private function getCurrentUsers()
     {
         try {
