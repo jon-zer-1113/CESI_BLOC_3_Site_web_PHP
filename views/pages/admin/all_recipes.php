@@ -42,8 +42,8 @@
         </div>
     </article>
 
-    <div id="add-recipe__modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="creating-recipe__modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div id="add-recipe__modal" class="modal fade" tabindex="-1" aria-labelledby="creating-recipe__modal" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="creating-recipe__modal"><i class="fa-solid fa-circle-plus"></i> Ajoute une recette</h4>
