@@ -42,8 +42,8 @@ $this->sessionOnlyUser();
 
 	<main id="user-top">
 		<?php require_once $this->userView; ?>
-		<div id="shopping-list" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="shopping-list__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="shopping-list" class="modal fade" tabindex="-1" aria-labelledby="shopping-list__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="shopping-list__modal">📄 Liste de courses</h4>
@@ -64,8 +64,8 @@ $this->sessionOnlyUser();
 			</div>
 		</div>
 
-		<div id="user-account-info" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="user-account-info__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="user-account-info" class="modal fade" tabindex="-1" aria-labelledby="user-account-info__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="user-account-info__modal"><i class="fa-solid fa-user"></i> Information compte</h4>
@@ -83,8 +83,8 @@ $this->sessionOnlyUser();
 			</div>
 		</div>
 
-		<div id="contact-information" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contact-user__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="contact-information" class="modal fade" tabindex="-1" aria-labelledby="contact-user__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="contact-user__modal">📞 Contact</h4>
