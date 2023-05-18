@@ -28,13 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
 });
 
-// Service Worker registration
+// SERVICE WORKER REGISTRATION
+document.addEventListener("DOMContentLoaded", () => {
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-            console.log('Service Worker registered');
-        })
-        .catch(error => {
-            console.error('Service Worker registration failed:', error);
-        });
-}
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('Service Worker registered');
+    })
+    .catch(error => {
+      console.error('Service Worker registration failed:', error);
+    });
+  };
+});
