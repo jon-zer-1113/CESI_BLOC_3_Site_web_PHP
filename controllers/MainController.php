@@ -36,6 +36,9 @@ class MainController
     private $commentModel;
     private $comments;
 
+    /**
+     * Display the visitor home page.
+     */
     private function displayCurrentVisitorHome()
     {
         $this->visitorView = 'views/pages/visitor/home.php';
@@ -48,6 +51,9 @@ class MainController
         return $this->displayCurrentVisitorHome();
     }
 
+    /**
+     * Display the team page.
+     */
     private function displayCurrentTeam()
     {
         $this->visitorView = 'views/pages/visitor/team.php';
@@ -55,11 +61,15 @@ class MainController
         require_once $this->visitorLayout;
     }
 
+
     public function displayTeam()
     {
         return $this->displayCurrentTeam();
     }
 
+    /**
+     * Display the contact page.
+     */
     private function displayCurrentContact()
     {
         $this->visitorView = 'views/pages/visitor/contact.php';
@@ -72,6 +82,9 @@ class MainController
         return $this->displayCurrentContact();
     }
 
+    /**
+     * Set an improved session cookie.
+     */
     private function sessionCookieImproved()
     {
         $params = session_get_cookie_params();
@@ -94,9 +107,12 @@ class MainController
         return $this->sessionCookieImproved();
     }
 
+    /**
+     * Check if a user session exists; otherwise, redirect to the home page.
+     */
     private function sessionUser()
     {
-        if (!isset($_SESSION['username'])) {
+        if (!isset($_SESSION['userId'])) {
             exit(header('Location: index.php?p=accueil'));
         }
     }
@@ -106,6 +122,9 @@ class MainController
         return $this->sessionUser();
     }
 
+    /**
+     * Create a new user.
+     */
     private function newUser()
     {
         $this->hashedPassword = password_hash(htmlspecialchars($_POST['password']), PASSWORD_BCRYPT);
@@ -125,6 +144,9 @@ class MainController
         return $this->newUser();
     }
 
+    /**
+     * Reads the current user (login).
+     */
     private function readCurrentUser()
     {
         $this->model = new \Models\Read();
@@ -134,11 +156,15 @@ class MainController
         exit(header('Location: index.php?p=accueil-utilisateur'));
     }
 
+    
     public function readUser()
     {
         return $this->readCurrentUser();
     }
 
+    /**
+     * Displays the user's home page.
+     */
     private function displayCurrentUserHome()
     {
         $this->userView = 'views/pages/user/home.php';
@@ -160,6 +186,9 @@ class MainController
         require_once $this->userLayout;
     }
 
+    /**
+     * Displays all recipes for the user.
+     */
     public function displayUserAllRecipes()
     {
         return $this->displayUserAllCurrentRecipes();
@@ -179,6 +208,9 @@ class MainController
         return $this->displayUserCurrentRecipe();
     }
 
+    /**
+     * Creates a new comment.
+     */
     private function createCurrentComment()
     {
         $this->commentModel = new \Models\Create();
@@ -193,6 +225,9 @@ class MainController
         return $this->createCurrentComment();
     }
 
+    /**
+     * Displays all the comments.
+     */
     private function displayUserComments()
     {
         $this->commentModel = new \Models\Read();
@@ -207,6 +242,10 @@ class MainController
         return $this->displayUserComments();
     }
 
+    /**
+     * Checks if the user has an active admin session.
+     * If not, redirects the user to the admin home page.
+     */
     private function sessionAdmin()
     {
         if (!isset($_SESSION['adminId'])) {
@@ -219,6 +258,10 @@ class MainController
         return $this->sessionAdmin();
     }
 
+    /**
+     * Checks if the user (admin) has a specific username.
+     * If it is the case, the user can access the user management page.
+     */
     private function sessionSuperAdmin()
     {
         if (($_SESSION['adminUsername'] !== "superAdmin")) {
@@ -231,6 +274,11 @@ class MainController
         return $this->sessionSuperAdmin();
     }
 
+    /**
+     * Creates a new admin account.
+     * Performs various validations and creates the account using provided data.
+     * Redirects the user to the admin home page.
+     */
     private function newAdmin()
     {
         $this->hashedPassword = password_hash(htmlspecialchars($_POST['adminPassword']), PASSWORD_BCRYPT);
@@ -250,6 +298,11 @@ class MainController
         return $this->newAdmin();
     }
 
+    /**
+     * Reads the current admin account details.
+     * Performs validations and retrieves the account information based on provided data.
+     * Redirects the user to the admin login page.
+     */
     private function readCurrentAdmin()
     {
         $this->model = new \Models\Read();
@@ -264,6 +317,10 @@ class MainController
         return $this->readCurrentAdmin();
     }
 
+    /**
+     * Displays the home page for the current admin.
+     * Sets the necessary view and layout variables for rendering the page.
+     */
     private function displayCurrentAdminHome()
     {
         $this->adminView = 'views/pages/admin/home.php';
@@ -276,6 +333,10 @@ class MainController
         return $this->displayCurrentAdminHome();
     }
 
+    /**
+     * Displays the home page for the current admin.
+     * Sets the necessary view and layout variables for rendering the page.
+     */
     private function displayCurrentAdminMainHome()
     {
         $this->adminView = 'views/pages/admin/main_home.php';
@@ -288,6 +349,10 @@ class MainController
         return $this->displayCurrentAdminMainHome();
     }
 
+    /**
+     * Displays all current recipes for the admin.
+     * Retrieves the recipes and sets the necessary view and layout variables for rendering the page.
+     */
     private function displayAllCurrentRecipes()
     {
         $this->recipeModel = new \Models\Read();
@@ -302,6 +367,10 @@ class MainController
         return $this->displayAllCurrentRecipes();
     }
 
+    /**
+     * Displays a recipe.
+     *
+     */
     private function displayCurrentRecipe()
     {
         $this->recipeModel = new \Models\Read();
@@ -316,6 +385,10 @@ class MainController
         return $this->displayCurrentRecipe();
     }
 
+    /**
+     * Recipe created by an user.
+     *
+     */
     private function createCurrentRecipe()
     {
         $this->recipeModel = new \Models\Create();
@@ -330,6 +403,9 @@ class MainController
         return $this->createCurrentRecipe();
     }
 
+    /**
+     * Recipe edited by an user.
+     */
     private function editCurrentRecipe()
     {
         $this->recipeModel = new \Models\Read();
@@ -344,6 +420,10 @@ class MainController
         return $this->editCurrentRecipe();
     }
 
+    /**
+     * Recipe updated by an user.
+     *
+     */
     private function updateCurrentRecipe()
     {
         $this->recipeModel = new \Models\Update();
@@ -358,6 +438,10 @@ class MainController
         return $this->updateCurrentRecipe();
     }
 
+    /**
+     * Recipe deleted by an user.
+     *
+     */
     private function deleteCurrentRecipe()
     {
         $this->recipeModel = new \Models\Delete();
@@ -370,6 +454,10 @@ class MainController
         return $this->deleteCurrentRecipe();
     }
 
+    /**
+     * Displays all current users.
+     *
+     */
     private function displayAllCurrentUsers()
     {
         $this->userModel = new \Models\Read();
@@ -393,11 +481,18 @@ class MainController
         require_once $this->superAdminMainLayout;
     }
 
+    /**
+     * Displays all current users for superadmin.
+     */
     public function displayAllUsersSuperAdmin()
     {
         return $this->displayAllCurrentUsersSuperAdmin();
     }
 
+    /**
+     * Deletes the current user based on the provided userId.
+     *
+     */
     private function deleteCurrentUser()
     {
         $this->userModel = new \Models\Delete();
