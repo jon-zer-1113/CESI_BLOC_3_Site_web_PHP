@@ -1,4 +1,3 @@
-<!-- ALL THE RECIPES ARE DISPLAYED INTO A TABLE -->
 <section class="user__all-comments-page text-center">
     <h1 class="text-center">Commentaires</h1>
 
@@ -24,7 +23,6 @@
         </div>
     </article>
 
-    <!-- NAVIGATION TO THE PREVIOUS PAGE -->
     <aside>
         <nav aria-label="Page navigation">
             <a href="index.php?p=consultation-recettes" class="btn btn-success text-uppercase" aria-label="Previous">revenir aux recettes</a>
