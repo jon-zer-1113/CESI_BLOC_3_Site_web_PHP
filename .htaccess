@@ -1,18 +1,24 @@
+# Enable URL rewriting
 RewriteEngine On
 
+# Redirect HTTP to HTTPS
 RewriteCond %{SERVER_PORT} ^80$
 RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
+# Block direct access to images
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^https://(www\.)?8bit-burger\.melanieroussy\.fr [NC]
 RewriteRule \.(jpg|png|ico)$ - [NC,F,L]
 
-Options -Indexes 
+# Disable directory listing
+Options -Indexes
 
+# Enable compression for specific content types
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css text/plain text/javascript
 </IfModule>
 
+# Set Cache-Control header for certain file types
 <IfModule mod_headers.c>
     <FilesMatch "\.(jpg|png|ico|otf|ttf|cur)$">
         Header set Cache-Control "max-age=31536000, public"
@@ -23,5 +29,6 @@ Options -Indexes
     </FilesMatch>
 </IfModule>
 
+# Custom error pages
 ErrorDocument 403 /views/pages/errors/error_403.php
 ErrorDocument 404 /views/pages/errors/error_404.php
