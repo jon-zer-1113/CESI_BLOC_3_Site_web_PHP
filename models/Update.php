@@ -10,7 +10,23 @@ class Update extends DbConnection
     private $timeZone;
     private $errDate;
     private $errLog;
-
+    
+     /**
+     * Updates the recipe with the specified recipeId in the database.
+     *
+     * @param string $title The updated title of the recipe.
+     * @param string $description The updated description of the recipe.
+     * @param int $prepTime The updated preparation time of the recipe.
+     * @param int $bakeTime The updated baking time of the recipe.
+     * @param int $totalTime The updated total time of the recipe.
+     * @param string $difficulty The updated difficulty level of the recipe.
+     * @param string $cost The updated cost of the recipe.
+     * @param string $ingredients The updated ingredients of the recipe.
+     * @param string $steps The updated steps of the recipe.
+     * @param int $recipeId The ID of the recipe to update.
+     *
+     * @throws \PDOException if a database error occurs during the update.
+     */
     private function updateCurrentRecipe($title, $description, $prepTime, $bakeTime, $totalTime, $difficulty, $cost, $ingredients, $steps, $recipeId)
     {
         try {
