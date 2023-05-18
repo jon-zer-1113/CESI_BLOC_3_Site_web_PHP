@@ -1,5 +1,4 @@
 <?php ?>
-<!-- MAIN HOME PAGE OF THE BACK-OFFICE -->
 <section class="back-office__main-home-page text-center">
 	<h1>Espace administrateur</h1>
 
