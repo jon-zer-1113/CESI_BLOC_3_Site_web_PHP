@@ -1,4 +1,3 @@
-<!-- ALL THE USERS ARE DISPLAYED INTO A TABLE -->
 <section class="back-office__all-users-superadmin-page">
     <h1 class="text-center">Espace superAdmin</h1>
 
@@ -40,7 +39,6 @@
         </div>
     </article>
 
-    <!-- NAVIGATION TO THE PREVIOUS PAGE -->
     <aside class="text-center mt-5">
         <nav>
             <a class="btn btn-success" href="index.php?p=comptes-utilisateurs" role="button">Retour</a>
