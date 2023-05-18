@@ -1,4 +1,3 @@
-<!-- ALL THE RECIPES ARE DISPLAYED INTO A TABLE -->
 <section class="user__all-recipes-page">
     <h1 class="text-center">Recettes</h1>
 
