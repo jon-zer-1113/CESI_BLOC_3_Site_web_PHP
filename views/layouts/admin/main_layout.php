@@ -41,8 +41,8 @@ $this->sessionOnlyAdmin();
 
 	<main id="admin-top">
 		<?php require_once $this->adminView; ?>
-		<div id="admin-account-info" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="admin-account-info__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="admin-account-info" class="modal fade" tabindex="-1" aria-labelledby="admin-account-info__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="admin-account-info__modal"><i class="fa-solid fa-user"></i> Information compte</h4>
