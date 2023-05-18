@@ -9,7 +9,14 @@ class Delete extends DbConnection
     private $timeZone;
     private $errDate;
     private $errLog;
-
+    
+     /**
+     * Deletes the recipe with the specified recipeId from the database.
+     *
+     * @param int $recipeId The ID of the recipe to delete.
+     *
+     * @throws \PDOException if a database error occurs during the deletion.
+     */
     private function deleteCurrentRecipe($recipeId)
     {
         try {
@@ -29,7 +36,14 @@ class Delete extends DbConnection
     {
         $this->deleteCurrentRecipe($recipeId);
     }
-
+    
+     /**
+     * Deletes the user with the specified userId from the database.
+     *
+     * @param int $userId The ID of the user to delete.
+     *
+     * @throws \PDOException if a database error occurs during the deletion.
+     */
     private function deleteCurrentUser($userId)
     {
         try {
