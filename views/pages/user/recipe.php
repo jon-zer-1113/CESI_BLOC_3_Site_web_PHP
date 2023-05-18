@@ -1,4 +1,3 @@
-<!-- DISPLAY A SPECIFIC RECIPE -->
 <section class="user__recipe-page text-center">
     <h1 class="text-center">Recette</h1>
 
@@ -81,7 +80,6 @@
         </aside>
     </article>
 
-    <!-- NAVIGATION TO THE PREVIOUS PAGE -->
     <aside>
         <nav aria-label="Page navigation">
             <a class="page-link mx-auto mt-3" href="index.php?p=consultation-recettes" aria-label="Previous">
@@ -91,9 +89,8 @@
     </aside>
 </section>
 
-<!-- MODAL : SENDING AN EMAIL (RECIPE) -->
-<div id="sending-recipe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sending-recipe__modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div id="sending-recipe" class="modal fade" tabindex="-1" aria-labelledby="sending-recipe__modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="sending-recipe__modal">📧 Envoyer la recette</h4>
