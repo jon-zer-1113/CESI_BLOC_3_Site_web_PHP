@@ -1,4 +1,3 @@
-<!-- ALL THE USERS ARE DISPLAYED INTO A TABLE -->
 <section class="back-office__all-users-page">
     <h1 class="text-center">Gestion utilisateurs</h1>
 
@@ -11,7 +10,6 @@
     <article class="mt-5 text-center">
 
         <h2>Liste des utilisateurs <i class="fa-solid fa-users"></i></h2>
-        <!-- NAVIGATION TO THE SUPER ADMIN PANEL -->
         <p><a class="btn btn-success mt-3" href="index.php?p=gestion-utilisateurs" role="button">Accès superAdmin</a></p>
         <div class="container">
             <div class="row justify-content-center">
