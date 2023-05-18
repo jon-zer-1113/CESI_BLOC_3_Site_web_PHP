@@ -1,4 +1,3 @@
-<!-- DISPLAY A SPECIFIC RECIPE -->
 <section class="back-office__recipe-page text-center">
 	<h1 class="text-center">Recette</h1>
 
@@ -36,7 +35,6 @@
 		</article>
 	</article>
 
-	<!-- NAVIGATION TO THE PREVIOUS PAGE -->
 	<aside>
 		<nav aria-label="Page navigation">
 			<a class="page-link mx-auto mt-5" href="index.php?p=gestion-recettes" aria-label="Previous">
