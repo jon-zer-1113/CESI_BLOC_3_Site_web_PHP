@@ -112,13 +112,13 @@ $this->sessionOnlyUser();
 		function sendEmail() {
 			let message = document.querySelector('#writing-shopping-list').value;
 			let link = "mailto:votre-adresse-email?body=" + encodeURIComponent(message);
-			window.open(link, "_blank");
+			window.location.href = link;
 		}
 
 		function otherSendEmail() {
 			let content = document.querySelector('#sending').value;
 			let link = "mailto:votre-adresse-email?body=" + encodeURIComponent(content);
-			window.open(link, "_blank");
+			window.location.href = link;
 		}
 
 		function printTextarea() {
