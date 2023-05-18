@@ -15,7 +15,7 @@ class DbConnection
 	private $errDate;
 	private $errLog;
 	
-		/**
+	/**
 	 * Sets up the database connection using PDO.
 	 *
 	 * @throws \PDOException if a database connection error occurs.
@@ -33,7 +33,7 @@ class DbConnection
         }
 	}
 	
-		/**
+	/**
 	 * Returns the database connection instance.
 	 * If the connection is null, it sets up the connection before returning.
 	 *
