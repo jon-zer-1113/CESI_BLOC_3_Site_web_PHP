@@ -41,8 +41,8 @@ session_destroy();
 
 	<main id="visitor-top">
 		<?php require_once $this->visitorView; ?>
-		<div id="user-connexion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="user-login__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="user-connexion" class="modal fade" tabindex="-1" aria-labelledby="user-login__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="user-login__modal"><i class="fa-solid fa-user pe-1"></i> Connexion</h4>
@@ -76,8 +76,8 @@ session_destroy();
 			</div>
 		</div>
 
-		<div id="user-registration" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="visitor-registration__modal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
+		<div id="user-registration" class="modal fade" tabindex="-1" aria-labelledby="visitor-registration__modal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h4 class="modal-title" id="visitor-registration__modal"><i class="fa-solid fa-user-plus pe-1"></i> Inscription</h4>
